@@ -1,0 +1,833 @@
+//=========================================== Direction========================================
+
+.flexCol {
+  flex-direction: column;
+}
+// ========================================== Display ==========================================
+.dMobile {
+  display: none;
+}
+
+.dDesktop {
+  display: contents;
+}
+
+// ========================================== Border ==========================================
+.borderNone {
+  border: none !important;
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+// ========================================== Colors ==========================================
+.white {
+  color: "#FFFFFF" !important;
+}
+
+.black {
+  color: "#000000" !important;
+}
+
+.gray200 {
+  color: #eee !important;
+}
+
+.gray300 {
+  color: #e8eaed !important;
+}
+
+.gray400 {
+  color: #e5e5e5 !important;
+}
+
+.lightGray {
+  color: #ddd !important;
+}
+
+.mediumGray {
+  color: #888 !important;
+}
+
+.red {
+  color: #d32f2f !important;
+}
+
+.redDark {
+  color: #b91c1c !important;
+}
+
+.purpleBlue {
+  color: #2c3e50 !important;
+}
+
+.brightGreen {
+  color: #1abc9c !important;
+}
+
+.redRose {
+  color: #fef6f3 !important;
+}
+
+// ========================================== Background ==========================================
+.bg-white {
+  background-color: "#FFFFFF" !important;
+}
+
+.bg-black {
+  background-color: "#000000" !important;
+}
+
+.bg-gray200 {
+  background-color: #eee !important;
+}
+
+.bg-gray300 {
+  background-color: #e8eaed !important;
+}
+
+.bg-gray400 {
+  background-color: #e5e5e5 !important;
+}
+
+.bg-lightGray {
+  background-color: #ddd !important;
+}
+
+.bg-mediumGray {
+  background-color: #888 !important;
+}
+
+.bg-red {
+  background-color: #d32f2f !important;
+}
+
+.bg-redDark {
+  background-color: #b91c1c !important;
+}
+
+.bg-purpleBlue {
+  background-color: #2c3e50 !important;
+}
+
+.bg-brightGreen {
+  background-color: #1abc9c !important;
+}
+
+.bg-redRose {
+  background-color: #fef6f3 !important;
+}
+
+.bg-orangerYellow {
+  background-color: #f0ad4e !important;
+}
+
+// ========================================== FontSize ==========================================
+.fontS {
+  font-size: $fontS !important;
+}
+
+.fontSP {
+  font-size: $fontSP !important;
+}
+
+.fontM {
+  font-size: $fontM !important;
+}
+
+.fontMP {
+  font-size: $fontMP !important;
+}
+
+.fontL {
+  font-size: $fontL !important;
+}
+
+.fontXL {
+  font-size: $fontXL !important;
+}
+
+.fontXXL {
+  font-size: $fontXXL !important;
+}
+
+// ========================================== Font weight ==========================================
+.regular {
+  font-weight: $regular;
+}
+
+.semiBold {
+  font-weight: $semiBold !important;
+}
+
+.bold {
+  font-weight: $bold !important;
+}
+
+// ========================================== Font Family ==========================================
+
+.font1 {
+  font-family: $font1 !important;
+}
+
+.font2 {
+  font-family: $font2 !important;
+}
+
+.font3 {
+  font-family: $font3 !important;
+}
+
+// ========================================== Width height ==========================================
+.w100 {
+  width: 100% !important;
+}
+
+.h100 {
+  height: 100% !important;
+}
+
+// ========================================== Hover ==========================================
+.pointer {
+  cursor: pointer;
+}
+
+//=========================================== Padding========================================
+.p8 {
+  padding: 8px !important;
+}
+
+.p40 {
+  padding: 40px !important;
+}
+
+.py40 {
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
+
+// ========================================== Padding top ==========================================
+.pt8 {
+  padding-top: $sp8 !important;
+}
+.pt12 {
+  padding-top: $sp12 !important;
+}
+
+.pt16 {
+  padding-top: $sp16 !important;
+}
+
+.pt20 {
+  padding-top: $sp20 !important;
+}
+
+.pt24 {
+  padding-top: $sp24 !important;
+}
+
+.pt32 {
+  padding-top: $sp32 !important;
+}
+
+.pt36 {
+  padding-top: $sp36 !important;
+}
+
+.pt40 {
+  padding-top: $sp40 !important;
+}
+
+.pt44 {
+  padding-top: $sp44 !important;
+}
+
+.pt48 {
+  padding-top: $sp48 !important;
+}
+
+.pt52 {
+  padding-top: $sp52 !important;
+}
+
+.pt56 {
+  padding-top: $sp56 !important;
+}
+
+.pt60 {
+  padding-top: $sp60 !important;
+}
+
+.pt80 {
+  padding-top: $sp80 !important;
+}
+
+.pt112 {
+  padding-top: $sp112 !important;
+}
+.pt128 {
+  padding-top: $sp128 !important;
+}
+
+// ========================================== Padding left ==========================================
+.pl12 {
+  padding-left: $sp12 !important;
+}
+
+.pl16 {
+  padding-left: $sp16 !important;
+}
+
+.pl20 {
+  padding-left: $sp20 !important;
+}
+
+.pl24 {
+  padding-left: $sp24 !important;
+}
+
+.pl28 {
+  padding-left: $sp28 !important;
+}
+
+.pl36 {
+  padding-left: $sp36 !important;
+}
+
+.pl40 {
+  padding-left: $sp40 !important;
+}
+
+.pl44 {
+  padding-left: $sp44 !important;
+}
+
+.pl48 {
+  padding-left: $sp48 !important;
+}
+
+.pl52 {
+  padding-left: $sp52 !important;
+}
+
+.pl56 {
+  padding-left: $sp56 !important;
+}
+
+.pl60 {
+  padding-left: $sp60 !important;
+}
+
+.pl80 {
+  padding-left: $sp80 !important;
+}
+
+.pl112 {
+  padding-left: $sp112 !important;
+}
+
+// ========================================== Padding right ==========================================
+.pr12 {
+  padding-right: $sp12 !important;
+}
+
+.pr16 {
+  padding-right: $sp16 !important;
+}
+
+.pr20 {
+  padding-right: $sp20 !important;
+}
+
+.pr24 {
+  padding-right: $sp24 !important;
+}
+
+.pr28 {
+  padding-right: $sp28 !important;
+}
+
+.pr32 {
+  padding-right: $sp32 !important;
+}
+
+.pr36 {
+  padding-right: $sp36 !important;
+}
+
+.pr40 {
+  padding-right: $sp40 !important;
+}
+
+.pr44 {
+  padding-right: $sp44 !important;
+}
+
+.pr48 {
+  padding-right: $sp48 !important;
+}
+.pr60 {
+  padding-right: $sp60 !important;
+}
+
+.pr80 {
+  padding-right: $sp80 !important;
+}
+
+.pr112 {
+  padding-right: $sp112 !important;
+}
+
+// ========================================== Padding bottom ==========================================
+.pb8 {
+  padding-bottom: $sp8 !important;
+}
+.pb12 {
+  padding-bottom: $sp12 !important;
+}
+
+.pb16 {
+  padding-bottom: $sp16 !important;
+}
+
+.pb20 {
+  padding-bottom: $sp20 !important;
+}
+
+.pb24 {
+  padding-bottom: $sp24 !important;
+}
+
+.pb28 {
+  padding-bottom: $sp28 !important;
+}
+
+.pb32 {
+  padding-bottom: $sp32 !important;
+}
+
+.pb36 {
+  padding-bottom: $sp36 !important;
+}
+
+.pb40 {
+  padding-bottom: $sp40 !important;
+}
+
+.pb44 {
+  padding-bottom: $sp44 !important;
+}
+
+.pb48 {
+  padding-bottom: $sp48 !important;
+}
+
+.pb52 {
+  padding-bottom: $sp52 !important;
+}
+
+.pb56 {
+  padding-bottom: $sp56 !important;
+}
+
+.pb60 {
+  padding-bottom: $sp60 !important;
+}
+.pb68 {
+  padding-bottom: $sp68 !important;
+}
+.pb80 {
+  padding-bottom: $sp80 !important;
+}
+
+.pb112 {
+  padding-bottom: $sp112 !important;
+}
+
+//===========================================Padding left right====================================
+.px4 {
+  padding-left: $sp4 !important;
+  padding-right: $sp4 !important;
+}
+.px8 {
+  padding-left: $sp8 !important;
+  padding-right: $sp8 !important;
+}
+.px12 {
+  padding-left: $sp12 !important;
+  padding-right: $sp12 !important;
+}
+.px20 {
+  padding-left: $sp20 !important;
+  padding-right: $sp20 !important;
+}
+.px136 {
+  padding-left: $sp136 !important;
+  padding-right: $sp136 !important;
+}
+
+//===========================================Padding top bottom====================================
+.py4 {
+  padding-top: $sp4 !important;
+  padding-bottom: $sp4 !important;
+}
+.py8 {
+  padding-top: $sp8 !important;
+  padding-bottom: $sp8 !important;
+}
+.py12 {
+  padding-top: $sp12 !important;
+  padding-bottom: $sp12 !important;
+}
+.py16 {
+  padding-top: $sp16 !important;
+  padding-bottom: $sp16 !important;
+}
+.py40 {
+  padding-top: $sp40 !important;
+  padding-bottom: $sp40 !important;
+}
+
+// ========================================== Margin top ==========================================
+.mt4 {
+  margin-top: $sp4 !important;
+}
+
+.mt8 {
+  margin-top: $sp8 !important;
+}
+
+.mt12 {
+  margin-top: $sp12 !important;
+}
+
+.mt16 {
+  margin-top: $sp16 !important;
+}
+
+.mt20 {
+  margin-top: $sp20 !important;
+}
+
+.mt24 {
+  margin-top: $sp24 !important;
+}
+
+.mt28 {
+  margin-top: $sp28 !important;
+}
+
+.mt32 {
+  margin-top: $sp32 !important;
+}
+
+.mt36 {
+  margin-top: $sp36 !important;
+}
+
+.mt40 {
+  margin-top: $sp40 !important;
+}
+
+.mt44 {
+  margin-top: $sp44 !important;
+}
+
+.mt48 {
+  margin-top: $sp48 !important;
+}
+
+.mt52 {
+  margin-top: $sp52 !important;
+}
+
+.mt56 {
+  margin-top: $sp56 !important;
+}
+
+.mt60 {
+  margin-top: $sp60 !important;
+}
+
+.mt80 {
+  margin-top: $sp80 !important;
+}
+
+.mt112 {
+  margin-top: $sp112 !important;
+}
+
+// ========================================== Padding left ==========================================
+.ml4 {
+  margin-left: $sp4 !important;
+}
+
+.ml8 {
+  margin-left: $sp8 !important;
+}
+
+.ml12 {
+  margin-left: $sp12 !important;
+}
+
+.ml16 {
+  margin-left: $sp16 !important;
+}
+
+.ml20 {
+  margin-left: $sp20 !important;
+}
+
+.ml24 {
+  margin-left: $sp24 !important;
+}
+
+.ml28 {
+  margin-left: $sp28 !important;
+}
+
+.ml32 {
+  margin-left: $sp32 !important;
+}
+
+.ml36 {
+  margin-left: $sp36 !important;
+}
+
+.ml40 {
+  margin-left: $sp40 !important;
+}
+
+.ml44 {
+  margin-left: $sp44 !important;
+}
+
+.ml48 {
+  margin-left: $sp48 !important;
+}
+
+.ml52 {
+  margin-left: $sp52 !important;
+}
+
+.ml56 {
+  margin-left: $sp56 !important;
+}
+
+.ml60 {
+  margin-left: $sp60 !important;
+}
+
+.ml80 {
+  margin-left: $sp80 !important;
+}
+
+.ml112 {
+  margin-left: $sp112 !important;
+}
+
+// ========================================== Padding right ==========================================
+.mr4 {
+  margin-right: $sp4 !important;
+}
+
+.mr8 {
+  margin-right: $sp8 !important;
+}
+
+.mr12 {
+  margin-right: $sp12 !important;
+}
+
+.mr16 {
+  margin-right: $sp16 !important;
+}
+
+.mr20 {
+  margin-right: $sp20 !important;
+}
+
+.mr24 {
+  margin-right: $sp24 !important;
+}
+
+.mr28 {
+  margin-right: $sp28 !important;
+}
+
+.mr32 {
+  margin-right: $sp32 !important;
+}
+
+.mr36 {
+  margin-right: $sp36 !important;
+}
+
+.mr40 {
+  margin-right: $sp40 !important;
+}
+
+.mr44 {
+  margin-right: $sp44 !important;
+}
+
+.mr48 {
+  margin-right: $sp48 !important;
+}
+
+.mr52 {
+  margin-right: $sp52 !important;
+}
+
+.mr56 {
+  margin-right: $sp56 !important;
+}
+
+.mr60 {
+  margin-right: $sp60 !important;
+}
+
+.mr80 {
+  margin-right: $sp80 !important;
+}
+
+.mr112 {
+  margin-right: $sp112 !important;
+}
+
+// ========================================== Margin bottom ==========================================
+.mb4 {
+  margin-bottom: $sp4 !important;
+}
+
+.mb8 {
+  margin-bottom: $sp8 !important;
+}
+
+.mb12 {
+  margin-bottom: $sp12 !important;
+}
+
+.mb16 {
+  margin-bottom: $sp16 !important;
+}
+
+.mb20 {
+  margin-bottom: $sp20 !important;
+}
+
+.mb24 {
+  margin-bottom: $sp24 !important;
+}
+
+.mb28 {
+  margin-bottom: $sp28 !important;
+}
+
+.mb32 {
+  margin-bottom: $sp32 !important;
+}
+
+.mb36 {
+  margin-bottom: $sp36 !important;
+}
+
+.mb40 {
+  margin-bottom: $sp40 !important;
+}
+
+.mb44 {
+  margin-bottom: $sp44 !important;
+}
+
+.mb48 {
+  margin-bottom: $sp48 !important;
+}
+
+.mb52 {
+  margin-bottom: $sp52 !important;
+}
+
+.mb56 {
+  margin-bottom: $sp56 !important;
+}
+
+.mb60 {
+  margin-bottom: $sp60 !important;
+}
+
+.mb80 {
+  margin-bottom: $sp80 !important;
+}
+
+.mb112 {
+  margin-bottom: $sp112 !important;
+}
+//=======================================Gap================================
+.gapRow24 {
+  row-gap: 24px;
+}
+
+//======================================Border radius=======================
+.roundedFull {
+  border-radius: 50%;
+}
+//======================================Object Fit=========================
+.objectContain {
+  object-fit: contain;
+}
+.objectCover {
+  object-fit: cover;
+}
+
+//=====================================Overflow============================
+.overflowHidden {
+  overflow: hidden;
+}
+//=====================================White-space=========================
+.whiteSpaceNowrap {
+  white-space: nowrap;
+}
+
+//======================================Font Style========================
+.italic {
+  font-style: italic;
+}
+
+// ========================================== Possition ==========================================
+.pAbsolute {
+  position: absolute !important;
+}
+
+.pRelative {
+  position: relative !important;
+}
+
+.pFixed {
+  position: fixed !important;
+}
+
+// ========================================== Text transform ==========================================
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.lowercase {
+  text-transform: lowercase !important;
+}
+
+.capitalize {
+  text-transform: capitalize !important;
+}
+
+// ========================================== Transition ==========================================
+.fastTransition {
+  transition: 0.1s !important;
+}
+
+.mediumTransition {
+  transition: 0.2s !important;
+}
+
+.lowTransition {
+  transition: 0.3s !important;
+}

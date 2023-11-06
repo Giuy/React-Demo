@@ -1,0 +1,140 @@
+<div class="p-5 font-bold">
+  {{property.title}}
+</div>
+<p-carousel [showNavigators]="false" [value]="images">
+  <ng-template pTemplate="item" let-item>
+    <!-- <img width="100px" height="100px" [src]="item.imageUrl" [alt]="item.imageName" /> -->
+    <img [src]="item.imageUrl" [alt]="item.imageName" />
+  </ng-template>
+</p-carousel>
+<div class="grid">
+  <div [ngClass]="property.mapLink===''&&property.videoLink===''?'col-12':'xl:col-9 lg:col-7 md:col-6 col-12'" class="p-5">
+    <div class="pb-4">
+      {{property?.shortDescriptions}}
+    </div>
+    <div>
+      <div class="font-bold pb-2 ">Sepicification</div>
+      <div class="border-t pt-2 pb-4 sepicification">
+        <div class="grid">
+          <div class="xl:col-4 col-12">
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"></i>
+              </div>
+              <div class="ml-2">Construction year:{{property?.constructionYear |date:'yyyy' }}</div>
+            </div>
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"></i>
+              </div>
+              <div class="ml-2">Square Areas:{{property?.lotSize}}</div>
+            </div>
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"></i>
+              </div>
+              <div class="ml-2">Living rooms:{{property?.livingrooms}}</div>
+            </div>
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"></i>
+              </div>
+              <div class="ml-2">Bathrooms:{{property?.bathrooms}}</div>
+            </div>
+
+          </div>
+          <div class="xl:col-4 col-12">
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"></i>
+              </div>
+              <div class="ml-2">Bedrooms:{{property?.bedrooms}}</div>
+            </div>
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"></i>
+              </div>
+              <div class="ml-2">Balconies:{{property?.balconies}}</div>
+            </div>
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"></i>
+              </div>
+              <div class="ml-2">Car Parking:{{property?.carParking}}</div>
+            </div>
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"></i>
+              </div>
+              <div class="ml-2">Total Floors:{{property?.totalFloors}}</div>
+            </div>
+
+          </div>
+          <div class="xl:col-4 col-12">
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"></i>
+              </div>
+              <div class="ml-2">Kitchens:{{property?.kitchens}}</div>
+            </div>
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"> </i>
+              </div>
+
+              <div class="ml-2">Garages:{{property?.gagares}}</div>
+            </div>
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"> </i>
+              </div>
+
+              <div class="ml-2">Pools:{{property?.pools}}</div>
+            </div>
+            <div class="flex py-2">
+              <div>
+                <i class="pi pi-check-circle"> </i>
+              </div>
+
+              <div *ngIf="property?.insurance" class="ml-2">Insurance:<i class="pi pi-check"
+                  style="font-size: 1rem"></i></div>
+              <div *ngIf="!property?.insurance" class="ml-2">Insurance:<i class="pi pi-times"
+                  style="font-size: 1rem"></i></div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="font-bold pb-2">Amenities</div>
+      <div class="border-t pt-2 pb-4">
+        <div class="grid">
+          <div *ngFor="let item of property?.listPropertyAmenities" class="xl:col-4 col-12">
+            <div class="flex">
+              <div>
+                <i class="pi pi-check-circle"></i>
+              </div>
+              <div class="ml-2">{{item?.amenities?.name}}</div>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="font-bold pb-2">Descriptions</div>
+      <div id="description" [innerHTML]="description">
+      </div>
+    </div>
+
+  </div>
+  <div class="xl:col-3 lg:col-5 md:col-6 col-12 right p-5">
+
+    <div [innerHTML]="mapUrl" *ngIf="property" class="border-t-b py-4"> </div>
+    <div [innerHTML]="videoUrl" *ngIf="property" class=" py-4"> </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+.type-switch {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: $sp60;
+    width: $sp128;
+    .toggle {
+        &__container {
+            position: relative;
+            cursor: pointer;
+            width: 106px;
+            height: $sp32;
+            user-select: none;
+            border-radius: $sp4;
+            overflow: hidden;
+            box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+          }
+          &__button {
+            position: absolute;
+            left: $sp48;
+
+            padding: 6px $sp12;
+
+            font-size: $fontSP;
+            font-weight: 500;
+            line-height: $fontMP;
+
+            color: #fff;
+            background-color: $brightGreen;
+
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+
+            &.buy {
+              left: 0;
+            }
+          }
+    }
+  
+}

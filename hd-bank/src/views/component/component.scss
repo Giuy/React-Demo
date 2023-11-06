@@ -1,0 +1,483 @@
+@media screen and (max-width: 1024px) {
+  .template-container {
+    padding: 0 $sp12 !important;
+    width: auto !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .template-container {
+    .hight-light-container {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  .relate-template {
+    .image {
+      padding-right: 0 !important;
+    }
+  }
+
+  .detail-template {
+
+    .breadcrumb {
+      width: auto !important;
+    }
+
+    .content-detail { 
+      figure {
+        width: auto !important;
+        margin: 0 !important;
+
+        table {
+          p {
+            font-size: $sp12;
+          }
+
+          td {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+          }
+        }
+
+        img {
+          width: 85vw !important;
+        }
+    }
+    }
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .template-container {
+    flex-direction: column;
+    .itemLeft {
+      flex: 1;
+      margin-right: 0;
+      .left-content {
+        .title {
+          margin-left: $sp12;
+        }
+        .nav-left {
+          margin-left: $sp12;
+          margin-right: $sp12;
+
+        }
+        .left-banner {
+          display: none;
+        }
+      }
+    }
+
+    .itemRight {
+      flex: 1;
+      margin-left: $sp20;
+      margin-right: $sp20;
+    }
+    .list-items-container {
+      flex-direction: column;
+      margin-bottom: $sp12;
+      height: auto !important;
+      .item-img {
+        margin-right: 0 !important;
+        height: 250px;
+        flex: auto !important;
+      }
+      .item-content {
+        margin-top: $sp12;
+      }
+      .description {
+        display: none;
+      }
+    }
+
+    .grid-items-container {
+      grid-template-columns: repeat(1, 1fr) !important;
+    }
+
+    .hight-light-container {
+      display: flex;
+      flex-direction: column;
+
+      img {
+        height: 160px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .relate-template {
+  
+    .image {
+      padding-right: 0 !important;
+    }
+  }
+
+  .detail-template {
+    .breadcrumb {
+      width: 100vw !important;
+      margin: $sp12 0 !important;
+      padding: 0 !important;
+      justify-content: space-evenly !important;
+
+      .title {
+        -webkit-line-clamp: 2 !important;
+      }
+    }
+
+    .content-detail {
+      img {
+        width: 100% !important;
+      }
+    }
+
+    .detail {
+      width: 90vw !important;
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .detail-template {
+
+    .content-detail { 
+      figure {
+        table {
+          text-align: left !important;
+          p {
+            font-size: $sp8 !important;
+          }
+        }
+    }
+    }
+  }
+}
+
+.template-container {
+  display: flex;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  margin-top: $sp32;
+  margin-bottom: $sp32;
+  flex-wrap: wrap;
+
+  .itemLeft {
+    flex: 3;
+    margin-right: $sp20;
+
+    .left-content {
+      .nav-left {
+        button {
+          background-color: white;
+        }
+
+        .selected {
+          transition: 0.1s ease-in-out;
+          background: linear-gradient(90deg, #0464CB 0%, #53ACFF 100%);
+          color: white;
+          font-weight: 700;
+        }
+      }
+
+      .left-banner {
+        img {
+          height: auto;
+        }
+      }
+    }
+  }
+
+  .itemRight {
+    flex: 8;
+
+    table {
+      thead {
+        tr {
+          background-color: #141ed2;
+
+          th {
+            color: white;
+            font-weight: $semiBold;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          cursor: pointer;
+
+          td {
+            border-right: 1px solid rgba(224, 224, 224, 1);
+          }
+
+          &:hover {
+            background-color: $lightGray;
+          }
+        }
+      }
+    }
+  }
+
+  .list-items-container {
+    display: flex;
+    margin-bottom: $sp32;
+    text-decoration: none;
+    height: 200px;
+
+    .item-img {
+      flex: 4;
+      margin-right: $sp20;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: $sp12;
+      }
+    }
+
+    .item-content {
+      flex: 8;
+
+      p {
+        margin-bottom: $sp20;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .grid-items-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $sp20;
+    margin-bottom: $sp32;
+
+    a {
+      text-decoration: none;
+
+      .item-img {
+        flex: 1;
+        img {
+          width: 100%;
+          height: 200px;
+          border-radius: $sp12;
+        }
+      }
+
+      .item-content {
+        margin-top: $sp12;
+      }
+    }
+
+  }
+
+  .hight-light-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $sp20;
+    margin-bottom: $sp32;
+
+    .item {
+      text-decoration: none !important;
+      &:first-child {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        .item-content p {
+          font-size: 20px;
+        }
+      }
+    }
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: $sp12;
+    }
+  }
+}
+
+.tabs-container {
+  width: 100%;
+
+  .MuiTabPanel-root {
+    padding: 0;
+  }
+
+  .MuiTabs-flexContainer {
+    justify-content: center;
+
+    .MuiButtonBase-root {
+      width: 33%;
+    }
+  }
+
+  .tab-labels {
+    font-weight: $semiBold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      margin-bottom: $sp12;
+    }
+  }
+}
+
+.circle {
+  .css-i4bv87-MuiSvgIcon-root {
+    width: $sp12;
+    height: $sp12;
+  }
+}
+
+.relate {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  border-top: 1px solid rgb(190, 190, 190);
+}
+
+.relate-template {
+  border-bottom: 1px solid rgb(219, 219, 219);
+  margin-bottom: $sp20;
+
+  .image {
+    width: 30%;
+    padding-right: 30px;
+    height: 200px;
+
+    img {
+      border-radius: 15px;
+      height: 100%;
+    }
+  }
+
+  .content-relate {
+    width: 70%;
+      color: $deepblue;
+  }
+}
+
+.detail-template {
+  width: 100%;
+
+  .breadcrumb {
+    display: flex;
+    max-width: 1200px;
+    // width: 100%;
+    margin: $sp12 auto;
+    padding: 0 $sp12;
+    a {
+      color: $deepblue;
+      text-decoration: none;
+    }
+
+    .title {
+      overflow: hidden;
+      width: 30vw;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+    }
+  }
+  .content-detail {
+
+    img {
+      display: flex;
+      width: 100% !important;
+      padding: 10px 0px 10px 0px;
+    }
+  }
+  .detail {
+    max-width: 1200px;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: justify !important;
+
+    a {
+      text-decoration: none;
+    }
+
+    p {
+      color: $deepblue;
+    }
+  }
+}
+
+.modal-detail {
+  position: absolute;
+  top: 10%;
+  left: 35%;
+  width: 500px;
+
+  .content {
+    background-color: white;
+    padding: $sp32;
+    border-radius: $sp12;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+
+    .contact-input {
+      background-color: white;
+      padding: $sp12;
+      border-radius: $sp8;
+      margin-bottom: $sp12;
+      box-shadow: 0px 4px 20px rgba(87, 87, 87, 0.25);
+
+      .MuiTextField-root {
+        width: 100%;
+
+        .MuiInput-root {
+          &::before {
+            border: none !important;
+          }
+        }
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      input[type=number] {
+        -moz-appearance: textfield;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1440px) {
+    left: 32%;
+  }
+  @media screen and (max-width: 1280px) {
+    left: 30%;
+  }
+  @media screen and (max-width: 1024px) {
+    left: 23%;
+  }
+  @media screen and (max-width: 768px) {
+    left: 15%;
+  }
+
+  @media screen and (max-width: 426px) {
+    left: 0;
+    width: 100%;
+
+    .content {
+      width: auto;
+    }
+  }
+}
+
+

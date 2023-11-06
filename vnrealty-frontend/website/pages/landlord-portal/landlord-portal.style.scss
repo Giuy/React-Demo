@@ -1,0 +1,58 @@
+.landlord-portal-container {
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+  .section {
+    margin-bottom: $sp60;
+
+    .image {
+      position: relative;
+      max-width: 636px;
+      height: 486px;
+
+      img {
+        object-fit: cover;
+      }
+    }
+    
+    .descriptions {
+      margin-top: $sp16;
+
+      .main-title {
+        font-size: $sp40;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+    }
+
+    .contact-us {
+      .title {
+        font-size: $sp40;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      form {
+        padding: 0 2%;
+      }
+    }
+
+    button {
+      width: auto;
+      font-weight: 600;
+      border-radius: 0;
+      padding: $sp8 $sp24;
+      color: $white;
+      background-color: $brightGreen;
+      border: 0;
+      transition: $mediumTransition;
+
+      &:hover {
+        color: $white;
+        background-color: #118a72;
+        transition: $mediumTransition;
+      }
+    }
+  }
+}

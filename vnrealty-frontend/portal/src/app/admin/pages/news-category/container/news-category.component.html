@@ -1,0 +1,83 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <p-table able #dt dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [value]="newsCategories" [rows]="20" [paginator]="true" [rowHover]="true" [(selection)]="selectedItems"
+    [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">News Category</h5>
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <!-- <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th> -->
+        <th *ngFor="let col of cols">
+          {{ col.header }}
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <!-- <td>
+          <p-tableCheckbox [value]="item"></p-tableCheckbox>
+        </td> -->
+        <td>{{ item.categoryNameVi }}</td>
+        <td>{{ item.created | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <p-inputSwitch [(ngModel)]="item.isActived" [disabled]="true">
+          </p-inputSwitch>
+        </td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+            (click)="openEdit(item)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+            (click)="deleteNewsCategory(item)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="dialog" [style]="{ width: '450px' }"
+  [header]="editMode ? 'Edit News Category' : 'Add News Category'" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="control-label">News Category Name <sup>*</sup></label>
+        <input formControlName="categoryNameVi" id="categoryNameVi" type="text" class="form-control" />
+        <span *ngIf="(categoryNameVi.touched || submitted) && categoryNameVi.errors?.required" id="categoryNameVi"
+          class="error invalid-feedback" style="display: block">Please input the news category name</span>
+        <span *ngIf="(categoryNameVi.touched || submitted) && categoryNameVi.errors?.maxlength" id="categoryNameVi"
+          class="error invalid-feedback" style="display: block">News category name must be less than 250 characters
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">News Category Name (English) <sup>*</sup></label>
+        <input formControlName="categoryNameEn" id="categoryNameEn" type="text" class="form-control" />
+        <span *ngIf="(categoryNameEn.touched || submitted) && categoryNameEn.errors?.required" id="categoryNameEn"
+          class="error invalid-feedback" style="display: block">Please input the news category name (English)</span>
+        <span *ngIf="(categoryNameEn.touched || submitted) && categoryNameEn.errors?.maxlength" id="categoryNameEn"
+          class="error invalid-feedback" style="display: block">
+          News category name (English) must be less than 250 characters
+        </span>
+      </div>
+
+      <div class="form-group">
+        <input formControlName="isActived" id="isActived" name="isActived" type="checkbox" style="margin-left: 0" />
+        <label class="control-label" for="isActived" style="margin-left: 20px; font-weight: bold;">Active</label>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid">Confirm</button>
+      </div>
+    </form>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

@@ -1,0 +1,18 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <div style="padding: 1rem 1rem">
+    <p-dropdown [options]="arrMasterDataType" optionLabel="name" optionValue="id" [(ngModel)]="masterDataType"
+      placeholder="Select Master Data Type" [style]="{ width: '300px' }" [showClear]="true" (onChange)="onMasterDataTypeChange($event.value)">
+    </p-dropdown>
+  </div>
+  <app-form-table *ngIf="masterDataType != undefined" [formName]="formName" [maxRowInsert]="maxRow"
+    (newClickedEvent)="onNewEvent()" (editClickedEvent)="onEditEvent($event)" (deleteClickedEvent)="onDeleteEvent($event)">
+  </app-form-table>
+  
+</div>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<app-form-dialog *ngIf="masterDataType != undefined" [width]="'800px'" [editMode]="editMode" [formName]="dialogName" (submitEvent)="onSubmitEvent($event)">
+
+</app-form-dialog>

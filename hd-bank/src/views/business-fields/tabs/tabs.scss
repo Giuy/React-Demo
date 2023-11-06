@@ -1,0 +1,6 @@
+.debt-right, .expertise-right, .manage-right {
+    @media screen and (max-width: 425px) {
+        margin-left: $sp12;
+        margin-right: $sp12;
+    }
+}

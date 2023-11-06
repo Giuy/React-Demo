@@ -1,0 +1,112 @@
+.search-property-container {
+  position: relative;
+  background-color: $gray200;
+  border-top: $sp4 solid $orangerYellow;
+  z-index: 3;
+
+  .search-tag {
+    position: absolute;
+    top: -40px;
+    color: $white;
+    background: $orangerYellow;
+    text-transform: uppercase;
+    padding: $sp8 $sp16;
+    font-weight: 600;
+    z-index: 1;
+    transition: $mediumTransition;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #f0991f;
+      transition: $mediumTransition;
+    }
+  }
+
+  .search-body {
+    .label-title {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .select-range {
+      width: 80%;
+      margin-top: $sp40;
+
+      .MuiSlider-rail {
+        height: $sp12;
+      }
+
+      .MuiSlider-track {
+        background: $brightGreen;
+        border: $brightGreen;
+        border-radius: unset;
+        height: $sp12;
+      }
+
+      .MuiSlider-valueLabel {
+        background-color: $brightGreen;
+        font-size: $sp12;
+      }
+
+      .MuiSlider-thumb {
+        width: 2px;
+        border-radius: none;
+        background-color: $brightGreen;
+
+        &:hover {
+          box-shadow: unset;
+        }
+      }
+
+      @media screen and (max-width: 767px) {
+        width: 90%;
+      }
+    }
+
+    button {
+      color: $white;
+      margin-top: $sp40;
+      padding: $sp8 0;
+      border-radius: $sp8;
+      height: 38px;
+      border: unset;
+      cursor: pointer;
+      transition: $mediumTransition;
+
+      &.search-button {
+        background-color: $brightGreen;
+  
+        &:hover {
+          background-color: $darkGreen;
+          transition: $mediumTransition;
+        }
+      }
+
+      &.reset-button {
+        background-color: $orangerYellow;
+
+        &:hover {
+          background-color: $darkOrangerYellow;
+          transition: $mediumTransition;
+        }
+      }
+
+      &.minimize {
+        margin-top: 30px;
+      }
+    }
+  }
+}
+
+.advanced-search {
+  color: $white;
+  float: right;
+  padding: $sp8;
+  transition: $mediumTransition;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+    transition: $mediumTransition;
+  }
+}

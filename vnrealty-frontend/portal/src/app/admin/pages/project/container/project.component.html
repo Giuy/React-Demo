@@ -1,0 +1,200 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <p-table able #dt dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [value]="listProject" [rows]="20" [paginator]="true" [rowHover]="true" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Projects</h5>
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let col of cols">
+          {{ col.header }}
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>
+          <img [src]="item.imageUrl === '' ? 'assets/img/NoImg.jpg' : item.imageUrl" alt=""
+            style="width: 50px; height: 50px; object-fit: cover; object-position: top" />
+        </td>
+        <td>{{ item.projectNameVi }}</td>
+        <td>{{ item.projectCode }}</td>
+        <td>{{ item.projectTypeName }}</td>
+        <td>{{ item.address }}</td>
+        <td style="font-weight: bold">
+          <p-inputSwitch [(ngModel)]="item.isActived" [disabled]="true">
+          </p-inputSwitch>
+        </td>
+        <td>{{ item.created | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+            (click)="openEdit(item.id)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+            (click)="onDelete(item)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="dialog" [style]="{ width: '800px' }" [header]="editMode ? 'Edit Project' : 'Add Project'"
+  [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- Project Name -->
+      <div class="form-group">
+        <label class="control-label">Project Name <sup>*</sup></label>
+        <input formControlName="projectNameVi" id="projectNameVi" type="text" class="form-control" />
+        <span *ngIf="(projectNameVi.touched || submitted) && projectNameVi.errors?.required" id="projectNameVi"
+          class="error invalid-feedback" style="display: block">Please input project name</span>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Project Name (English) <sup>*</sup></label>
+        <input formControlName="projectNameEn" id="projectNameEn" type="text" class="form-control" />
+        <span *ngIf="(projectNameEn.touched || submitted) && projectNameEn.errors?.required" id="projectNameEn"
+          class="error invalid-feedback" style="display: block">Please input project name (English)</span>
+      </div>
+      <!-- Project Code -->
+      <div class="form-group">
+        <label class="control-label">Project Code <sup>*</sup></label>
+        <input formControlName="projectCode" id="projectCode" type="text" class="form-control" />
+        <span *ngIf="(projectCode.touched || submitted) && projectCode.errors?.required" id="projectCode"
+          class="error invalid-feedback" style="display: block">Please input project code</span>
+      </div>
+      <!-- Project Type -->
+      <div class="form-group">
+        <label class="control-label">Project Type <sup>*</sup></label>
+        <select formControlName="projectTypeId" id="projectTypeId" class="form-control">
+          <option *ngFor="let item of listProjectType" [value]="item.id">{{ item['nameVi'] }}
+          </option>
+        </select>
+        <span *ngIf="(projectTypeId.touched || submitted) && projectTypeId.errors?.required"
+          id="projectTypeId" class="error invalid-feedback" style="display: block">
+          Please select project type
+        </span>
+      </div>
+      <!-- Cover Image -->
+      <div class="form-group">
+        <label class="control-label">Cover image <sup>*</sup></label>
+        <div style="width: 200px;">
+          <button pButton pRipple label="Choose image" icon="pi pi-plus" (click)="chooseFile($event)"></button>
+          <input id="file" type="file" accept="image/*" class="form-control" (change)="onFileChange($event)" style="display: none;"/>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card" style="width: 18rem">
+          <ng-container *ngIf="imageUrl.value; else noImage">
+            <img [src]="imageUrl.value" class="card-img-top" />
+          </ng-container>
+          <ng-template #noImage>
+            <img src="assets/img/NoImg.jpg" class="card-img-top" />
+          </ng-template>
+          <span *ngIf="(imageUrl.touched || submitted) && imageUrl.errors?.required" id="imageUrl"
+              class="error invalid-feedback" style="display: block">
+              Please choose image
+          </span>
+        </div>
+      </div>
+      <!-- Project Images -->
+      <div class="form-group">
+        <label class="control-label">Project images </label>
+        <div style="width: 200px;">
+          <button pButton pRipple label="Choose image" icon="pi pi-plus" (click)="chooseFileMany($event)"></button>
+          <input id="fileMany" type="file" accept="image/*" class="form-control" (change)="onFileChangeMany($event)" style="display: none;" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 mr-3" *ngFor="let item of projectImages">
+          <div class="card">
+            <ng-container *ngIf="item.imageUrl; else noImage">
+              <div class="image-item">
+                <img [src]="item.imageUrl" class="card-img-top" />
+                <div class="close-btn" (click)="removeImageItem(item)">
+                  <button pButton type="button" icon="pi pi-times" iconPos="left" class="p-button-danger p-button-rounded"></button>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #noImage>
+              <img src="assets/img/NoImg.jpg" class="card-img-top" />
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="control-label">Price</label>
+        <input formControlName="price" id="price" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Dimensions</label>
+        <input formControlName="dimensions" id="dimensions" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Address</label>
+        <input formControlName="address" id="address" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Start Date</label>
+        <p-calendar formControlName="startDate" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Estimate Finished Date</label>
+        <p-calendar formControlName="finishedDate" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Tags</label>
+        <p-chips separator="," formControlName="arrKeyword" placeholder="Input data then press enter" ></p-chips>
+      </div>
+
+      <!-- Short Descriptions -->
+      <div class="form-group">
+        <label class="control-label">Short Descriptions <sup>*</sup></label>
+        <textarea formControlName="shortDescriptionsVi" id="shortDescriptionsVi" class="form-control"></textarea>
+        <span *ngIf="(shortDescriptionsVi.touched || submitted) && shortDescriptionsVi.errors?.required" id="shortDescriptionsVi"
+          class="error invalid-feedback" style="display: block">Please input short descriptions</span>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Short Descriptions (English) <sup>*</sup></label>
+        <textarea formControlName="shortDescriptionsEn" id="shortDescriptionsEn" class="form-control"></textarea>
+        <span *ngIf="(shortDescriptionsEn.touched || submitted) && shortDescriptionsEn.errors?.required" id="shortDescriptionsEn"
+          class="error invalid-feedback" style="display: block">Please input short descriptions (English)</span>
+      </div>
+
+      <!-- Descriptions -->
+      <div class="form-group">
+        <label class="control-label">Full Descriptions</label>
+        <app-ckeditor [content]="descriptionsVi.value" (eventOnChange)="handleValueCkChange($event, 'descriptionsVi')">
+        </app-ckeditor>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Full Descriptions (English)</label>
+        <app-ckeditor [content]="descriptionsEn.value" (eventOnChange)="handleValueCkChange($event, 'descriptionsEn')">
+        </app-ckeditor>
+      </div>
+      <!-- Active -->
+      <div class="form-group">
+        <input formControlName="isActived" id="isActived" name="isActived" type="checkbox" style="margin-left: 0" />
+        <label class="control-label" for="isActived" style="margin-left: 20px">Active</label>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid">Confirm</button>
+      </div>
+    </form>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

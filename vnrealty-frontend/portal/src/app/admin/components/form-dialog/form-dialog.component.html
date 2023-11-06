@@ -1,0 +1,151 @@
+<p-dialog [(visible)]="showDialog" [style]="{ width: width }" [header]="editMode ? ('Edit ' + formName) : ('Add ' + formName)"
+  [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <!-- <div class="p-field">
+      <label for="name">Tên danh mục</label>
+      <input type="text" pInputText id="categoryName" [(ngModel)]="form.categoryName" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !form.categoryName">Vui lòng nhập tên</small>
+    </div> -->
+    <form [formGroup]="formDetail" (ngSubmit)="onSubmit()">
+      <ng-container *ngFor="let field of arrField">
+
+        <div class="form-group" *ngIf="field.fieldType == 'select'">
+          <label class="control-label">{{ field.fieldName }} <sup *ngIf="field.required == true">*</sup></label>
+          <select [formControlName]="field.fieldId" [id]="field.fieldId" class="form-control">
+            <option *ngFor="let item of field.selectData" [value]="item.value">{{ item['name'] }}</option>
+          </select>
+          <span *ngIf="(formDetail.get(field.fieldId).touched || submitted) && formDetail.get(field.fieldId).errors?.required" class="error invalid-feedback"
+            style="display: block">
+            Please choose {{ field.fieldName }}
+          </span>
+        </div>
+
+        <div class="form-group" *ngIf="field.fieldType == 'text'">
+          <div class="form-group">
+            <label class="control-label">{{ field.fieldName }} <sup *ngIf="field.required == true">*</sup></label>
+            <input [formControlName]="field.fieldId" type="text" class="form-control" />
+            <span *ngIf="(formDetail.get(field.fieldId).touched || submitted) && formDetail.get(field.fieldId).errors?.required" class="error invalid-feedback"
+              style="display: block">
+              Please input {{ field.fieldName }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="field.fieldType == 'number'">
+          <div class="form-group">
+            <label class="control-label">{{ field.fieldName }}</label>
+            <input [formControlName]="field.fieldId" type="text" class="form-control" twoDigitDecimaDirective />
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="field.fieldType == 'positiveNumber'">
+          <div class="form-group">
+            <label class="control-label">{{ field.fieldName }}</label>
+            <input [formControlName]="field.fieldId" type="text" class="form-control" positiveNumberDirective />
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="field.fieldType == 'datetime'">
+          <div class="form-group">
+            <label class="control-label">{{ field.fieldName }} <sup *ngIf="field.required == true">*</sup></label>
+            <p-calendar [formControlName]="field.fieldId" [dateFormat]="field.dateFormat"></p-calendar>
+            <span *ngIf="(formDetail.get(field.fieldId).touched || submitted) && formDetail.get(field.fieldId).errors?.required" class="error invalid-feedback"
+              style="display: block">
+              Please input {{ field.fieldName }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="field.fieldType == 'month'">
+          <div class="form-group">
+            <label class="control-label">{{ field.fieldName }} <sup *ngIf="field.required == true">*</sup></label>
+            <p-calendar [formControlName]="field.fieldId" [dateFormat]="field.dateFormat" view="month"></p-calendar>
+            <span *ngIf="(formDetail.get(field.fieldId).touched || submitted) && formDetail.get(field.fieldId).errors?.required" class="error invalid-feedback"
+              style="display: block">
+              Please input {{ field.fieldName }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="field.fieldType == 'textArea'">
+          <div class="form-group">
+            <label class="control-label">{{ field.fieldName }}</label>
+            <textarea [formControlName]="field.fieldId" class="form-control"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="field.fieldType == 'richText'">
+            <label class="control-label">{{ field.fieldName }}</label>
+            <app-ckeditor [content]="formDetail.get(field.fieldId).value" (eventOnChange)="handleCkChange($event, field.fieldId)">
+            </app-ckeditor>
+          </div>
+
+        <div class="form-group" *ngIf="field.fieldType == 'checkbox'">
+          <input [formControlName]="field.fieldId" [id]="field.fieldId" [name]="field.fieldId" type="checkbox" style="margin-left: 0" />
+          <label class="control-label" [for]="field.fieldId" style="margin-left: 20px; font-weight: bold;">{{ field.fieldName }}</label>
+        </div>
+
+        <div class="form-group" *ngIf="field.fieldType == 'chips'">
+          <div class="form-group">
+            <label class="control-label">{{ field.fieldName }}</label>
+            <p-chips separator="," [formControlName]="field.fieldId" placeholder="Input data then press enter" ></p-chips>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="field.fieldType == 'image'">
+          <label class="control-label">{{ field.fieldName }} <sup *ngIf="field.required == true">*</sup></label>
+          <div style="width: 200px;">
+            <button pButton pRipple label="Choose image" icon="pi pi-plus" (click)="chooseFile($event, field.fieldId)"></button>
+            <input [id]="field.fieldId" type="file" accept="image/*" class="form-control" (change)="onFileChange($event, field.fieldId)" style="display: none;"/>
+          </div>
+          <div class="col-md-3" style="padding-left: 0px;padding-top: 5px;">
+            <div class="card" style="width: 10rem">
+              <ng-container *ngIf="getFileUrlById(field.fieldId) != ''; else noImage">
+                <img [src]="getFileUrlById(field.fieldId)" class="card-img-top" />
+              </ng-container>
+              <ng-template #noImage>
+                <img src="assets/img/NoImg.jpg" class="card-img-top" />
+              </ng-template>
+            </div>
+            
+          </div>
+        </div>
+
+        <div *ngIf="field.fieldType == 'multipleImage'">
+          <div class="form-group">
+            <label class="control-label">{{ field.fieldName }}</label>
+            <div style="width: 200px;">
+              <button pButton pRipple label="Choose image" icon="pi pi-plus" (click)="chooseFileMany($event, field.fieldId)"></button>
+              <input [id]="field.fieldId" type="file" accept="image/*" class="form-control" (change)="onFileChangeMany($event, field.fieldId)" style="display: none;" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 mr-3" *ngFor="let item of getMultipleImage(field.fieldId)">
+              <div class="card">
+                <ng-container *ngIf="item.imageUrl; else noImage">
+                  <div class="image-item">
+                    <img [src]="item.imageUrl" class="card-img-top" />
+                    <div class="close-btn" (click)="removeImageItem(item, field.fieldId)">
+                      <button pButton type="button" icon="pi pi-times" iconPos="left" class="p-button-danger p-button-rounded"></button>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #noImage>
+                  <img src="assets/img/NoImg.jpg" class="card-img-top" />
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+      
+
+      <div class="form-group">
+        <!-- <button (click)="onBack()" class="btn btn-secondary mr-2">Quay lại danh sách</button> -->
+        <button type="submit" class="btn btn-success" [disabled]="formDetail.invalid">Confirm</button>
+      </div>
+    </form>
+  </ng-template>
+
+</p-dialog>

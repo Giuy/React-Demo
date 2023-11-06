@@ -1,0 +1,12 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <app-form-table [formName]="formName" (newClickedEvent)="onNewEvent()" (editClickedEvent)="onEditEvent($event)" (deleteClickedEvent)="onDeleteEvent($event)">
+  </app-form-table>
+  
+</div>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<app-form-dialog [width]="'800px'" [editMode]="editMode" [formName]="dialogName" (submitEvent)="onSubmitEvent($event)">
+
+</app-form-dialog>

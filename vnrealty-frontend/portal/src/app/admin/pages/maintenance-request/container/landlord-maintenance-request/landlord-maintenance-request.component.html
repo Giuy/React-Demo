@@ -1,0 +1,195 @@
+<p-toast></p-toast>
+<div [ngClass]="loading ? 'block' : 'hide'">
+  <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+</div>
+<div class="card property-main">
+  <p-table able #dt dataKey="id" [value]="listLandlordRequest" [rows]="10">
+    <ng-template pTemplate="caption">
+
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <div class="form-group mr-3">
+          <div class="custom-input lesing-input">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" class="form-control" (change)="onChangeTitleFitler($event.target.value)"
+              placeholder="Enter keyword to find Property ID, Address" />
+          </div>
+        </div>
+      </div>
+      <div id="list-status" class="flex flex-wrap gap-3">
+        <div id="status" (click)="selectStatus(item)" *ngFor="let item of listStatus;index as i"
+          [ngClass]="{'border-blue':item.status==1,'border-red':item.status==2,'border-green':item.status==3,'border-yellow':item.status==4,'border-pink':item.status==5,'active':item.status==status}"
+          class=" py-1 px-3 border-all ">
+          {{item.statusText}} ({{item.numberOfTicket}})
+        </div>
+
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width:200px;" *ngFor="let col of cols">
+          {{ col.header }}
+        </th>
+        <th style="width:200px;">Action</th>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.ticketId }}</td>
+        <td>{{ item?.property?.location }}</td>
+        <td><span *ngFor="let item of item.listMaintenanceArea;let last = last;">{{item.masterData?.name }}<span
+              *ngIf="!last"> ,</span></span></td>
+        <td><span *ngFor="let item of item.listErrorDetails;let last = last;">{{item.masterData?.name }}<span
+              *ngIf="!last"> ,</span></span></td>
+        <td>{{ item.created | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ item.finishedDate | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <p-chip label="New" styleClass="new" *ngIf="item.ticketStatus==1">
+          </p-chip>
+          <p-chip label="InProgress" styleClass="in-progress" *ngIf="item.ticketStatus==2">
+          </p-chip>
+          <p-chip label="Rejected" styleClass="rejected" *ngIf="item.ticketStatus==3">
+          </p-chip>
+          <p-chip label="Approved" styleClass="approved" *ngIf="item.ticketStatus==4">
+          </p-chip>
+          <p-chip label="Done" styleClass="done" *ngIf="item.ticketStatus==5">
+          </p-chip>
+        </td>
+        <td>
+          <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success mr-2"
+            (click)="openShow(item)" pTooltip="Edit"></button>
+          <button pButton pRipple icon="pi pi-check-square" class="p-button-rounded p-button-success mr-2"
+            (click)="openStatus(item)" pTooltip="Change Status"></button>
+          <button pButton pRipple icon="pi pi-clock" class="p-button-rounded p-button-warning"
+            (click)="openHistory(item)" pTooltip="See history"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-paginator [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rows]="pageSize"
+    [totalRecords]="totalRecords" (onPageChange)="pageChange($event)">
+  </p-paginator>
+</div>
+
+<div class="card-history">
+  <p-dialog [(visible)]="dialogHistory" [style]="{ width: '800px' }" [header]="'TICHKET HISTORY'" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <ng-container *ngFor="let item of historySteps; index as i">
+        <div style="position: relative;">
+          <div *ngIf="i !== 0" class="line" style="height: 80px; border-left: 1px solid #BDBDBD; margin-left: 11px;">
+          </div>
+          <div style="display: flex; padding: 20px 0; align-items: center;">
+            <img src="assets/img/icon/check-circle.svg" alt="" style="width: 24px; height: 24px; margin-right: 12px;">
+            <div>
+              <p style="font-weight: bold; margin-bottom: 0;">{{item.created | date: 'dd/MM/yyyy'}}</p>
+              <p style="margin-bottom: 0;">{{item.content}}</p>
+              <p style="margin-bottom: 0;">{{item.approver}}</p>
+              <p style="margin-bottom: 0;">{{item.reason}}</p>
+            </div>
+          </div>
+
+        </div>
+      </ng-container>
+    </ng-template>
+  </p-dialog>
+</div>
+
+<div class="card-add">
+  <p-dialog [(visible)]="dialogAdd" [style]="{ width: '800px' }" [header]="'Maintenance Request'" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- Property -->
+        <div class="form-group">
+          <label class="control-label">Select Property <sup>*</sup></label>
+          <!-- <select formControlName="property" [placeholder]="'Property Address | Host Name | Property ID'" [options]="propertyOptions" optionLabel="name" optionValue="value" ></select> -->
+          <select formControlName="property" id="property" class="form-control" placeholder="''">
+            <option value="" disabled selected hidden>Property Address | Host Name | Property ID</option>
+            <option *ngFor="let item of propertyOptions" [value]="item.value">{{ item['name'] }}</option>
+          </select>
+          <span *ngIf="(form.get('property').touched || submitted) && form.get('property').errors?.required"
+            id="property" class="error invalid-feedback" style="display: block">Please input property</span>
+        </div>
+        <!-- Area -->
+        <div class="form-group">
+          <label class="control-label">Maintenance Area <sup>*</sup></label>
+          <p-multiSelect formControlName="area" [placeholder]="'Please choose error area'" [options]="areaOptions"
+            optionLabel="name" optionValue="value"></p-multiSelect>
+          <span *ngIf="(form.get('area').touched || submitted) && form.get('area').errors?.required" id="area"
+            class="error invalid-feedback" style="display: block">Please input maintenance area</span>
+        </div>
+        <!-- Error type -->
+        <div class="form-group">
+          <label class="control-label">Error type <sup>*</sup></label>
+          <p-multiSelect formControlName="errorType" [placeholder]="'Please choose error type'"
+            [options]="errorTypeOptions" optionLabel="name" optionValue="value"></p-multiSelect>
+          <span *ngIf="(form.get('errorType').touched || submitted) && form.get('errorType').errors?.required"
+            id="errorType" class="error invalid-feedback" style="display: block">Please input error type</span>
+        </div>
+        <!-- Error detail -->
+        <div class="form-group">
+          <label class="control-label">Error details <sup>*</sup></label>
+          <p-multiSelect formControlName="errorDetail" [placeholder]="'Please choose error details'"
+            [options]="errorDetailOptions" optionLabel="name" optionValue="value"></p-multiSelect>
+          <span *ngIf="(form.get('errorDetail').touched || submitted) && form.get('errorDetail').errors?.required"
+            id="errorDetail" class="error invalid-feedback" style="display: block">Please input error details</span>
+        </div>
+        <!-- Notes -->
+        <div class="form-group">
+          <label class="control-label">Notes</label>
+          <textarea [rows]="5" [placeholder]="'If you have any special request, please take a note here.'"
+            formControlName="notes" class="form-control" pInputTextarea></textarea>
+        </div>
+        <!-- images -->
+
+        <div class="form-group">
+          <label class="control-label">Choose image <sup>*</sup></label>
+          <div style="width: 200px;">
+            <button pButton pRipple label="Choose image" icon="pi pi-plus" (click)="chooseFile($event)"></button>
+            <input id="file" type="file" accept="image/*" class="form-control" (change)="onFileChange($event)"
+              style="display: none;" />
+          </div>
+          <div class="col-md-3" style="padding-left: 0px;padding-top: 5px;">
+            <div class="card" style="width: 18rem">
+              <ng-container *ngIf="imageUrl.value; else noImage">
+                <img [src]="imageUrl.value" class="card-img-top" />
+              </ng-container>
+              <ng-template #noImage>
+                <img src="assets/img/NoImg.jpg" class="card-img-top" />
+              </ng-template>
+            </div>
+            <span *ngIf="(imageUrl.touched || submitted) && imageUrl.errors?.required" id="imageUrl"
+              class="error invalid-feedback" style="display: block">Please choose image</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <!-- <button (click)="onBack()" class="btn btn-secondary mr-2">Quay lại danh sách</button> -->
+          <button type="submit" class="btn btn-success" [disabled]="form.invalid">Confirm</button>
+        </div>
+      </form>
+    </ng-template>
+  </p-dialog>
+</div>
+
+<div class="card-status">
+  <p-dialog [(visible)]="dialogStatus" [style]="{ width: '800px' }" [header]="'UPDATE TICKET STATUS'" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <div class="p-d-flex p-ai-center p-jc-center" style="font-weight: bold; width: 100%; padding: 20px;">
+        Update Ticket Status
+      </div>
+      <textarea [placeholder]="'Please enter reason (*)'" [formControl]="reasonUpdate" [rows]="5"
+        class="form-control"></textarea>
+
+      <div class="p-d-flex p-ai-center p-jc-center mt-5">
+        <button [disabled]="reasonUpdate.value === ''" (click)="changeStatus('approve')" pButton type="button"
+          label="APPROVED" class="p-button-success" style="margin-right: 20px; width: fit-content;"></button>
+        <button [disabled]="reasonUpdate.value === ''" (click)="changeStatus('reject')" pButton type="button"
+          label="REJECTED" class="p-button-danger" style="width: fit-content;"></button>
+      </div>
+    </ng-template>
+  </p-dialog>
+</div>

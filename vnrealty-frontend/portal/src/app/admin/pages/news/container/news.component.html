@@ -1,0 +1,211 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <p-table able #dt dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [value]="listNews" [rows]="20" [paginator]="true" [rowHover]="true" [(selection)]="selectedItems"
+    [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="flex flex-row justify-between">
+        <div class="p-d-flex p-ai-center p-jc-between">
+          <h5 class="p-m-0">News</h5>
+        </div>
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+        (click)="openNew()"></button>
+        
+      </div>
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <div class="form-group mr-3">
+          <div class="custom-input">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" class="form-control" (change)="onChangeTitleFitler($event.target.value)"
+              placeholder="Search by title" />
+          </div>
+        </div>
+       
+      </div>
+
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <!-- <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th> -->
+        <th *ngFor="let col of cols">
+          {{ col.header }}
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <!-- <td>
+          <p-tableCheckbox [value]="item"></p-tableCheckbox>
+        </td> -->
+        <td>
+          {{ item.titleVi }}
+        </td>
+        <td>
+          {{ item.descriptionsVi }}
+        </td>
+        <td>
+          <img [src]="item.listImages.length == 0 ? 'assets/img/NoImg.jpg' : item.listImages[0].imageUrl" alt=""
+            style="width: 50px; height: 50px; object-fit: cover; object-position: top" />
+        </td>
+        <td>
+          {{ item.category && item.category.categoryNameVi }}
+        </td>
+        <td style="font-weight: bold">
+          <p-inputSwitch [(ngModel)]="item.isActived" [disabled]="true"></p-inputSwitch>
+        </td>
+        <td>
+          {{ item.created | date: 'dd/MM/yyyy' }}
+        </td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+            (click)="openEdit(item)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+            (click)="deleteNews(item)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="dialog" [style]="{ width: '800px' }" [header]="editMode ? 'Edit News' : 'Add News'"
+  [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="control-label">Title <sup>*</sup></label>
+        <input formControlName="titleVi" id="titleVi" type="text" class="form-control" />
+        <span *ngIf="(titleVi.touched || submitted) && titleVi.errors?.required" id="titleVi" class="error invalid-feedback"
+          style="display: block">Please input title</span>
+        <span *ngIf="(titleVi.touched || submitted) && titleVi.errors?.maxlength" id="titleVi" class="error invalid-feedback"
+          style="display: block">
+          Title must be less than 250 characters
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Title (English) <sup>*</sup></label>
+        <input formControlName="titleEn" id="titleEn" type="text" class="form-control" />
+        <span *ngIf="(titleEn.touched || submitted) && titleEn.errors?.required" id="titleEn"
+          class="error invalid-feedback" style="display: block">Please input title (English)</span>
+        <span *ngIf="(titleEn.touched || submitted) && titleEn.errors?.maxlength" id="titleEn"
+          class="error invalid-feedback" style="display: block">
+          Title (English) must be less than 250 characters
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Short descriptions <sup>*</sup></label>
+        <textarea rows="4" formControlName="descriptionsVi" id="descriptions" type="text" class="form-control"></textarea>
+        <span *ngIf="(descriptionsVi.touched || submitted) && descriptionsVi.errors?.required" id="descriptionsVi"
+          class="error invalid-feedback" style="display: block">Please input short descriptions</span>
+        <span *ngIf="(descriptionsVi.touched || submitted) && descriptionsVi.errors?.minlength" id="descriptionsVi"
+          class="error invalid-feedback" style="display: block">
+          Short descriptions must be less than 450 characters
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Short descriptions (English) <sup>*</sup></label>
+        <textarea rows="4" formControlName="descriptionsEn" id="descriptionsEn" type="text"
+          class="form-control"></textarea>
+        <span *ngIf="(descriptionsEn.touched || submitted) && descriptionsEn.errors?.required" id="descriptionsEn"
+          class="error invalid-feedback" style="display: block">Please input short descriptions (English)</span>
+        <span *ngIf="(descriptionsEn.touched || submitted) && descriptionsEn.errors?.minlength" id="descriptionsEn"
+          class="error invalid-feedback" style="display: block">
+          Short descriptions (English) must be less than 450 characters
+        </span>
+      </div>
+
+      <!-- Images -->
+      <div class="form-group">
+        <label class="control-label">Images</label>
+        <div style="width: 200px;">
+          <button pButton pRipple label="Choose image" icon="pi pi-plus" (click)="chooseFile($event)"></button>
+          <input id="file" type="file" accept="image/*" class="form-control" (change)="onFileChange($event)" style="display: none;" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 mr-3" *ngFor="let item of newsImages">
+          <div class="card">
+            <ng-container *ngIf="item.imageUrl; else noImage">
+              <div class="image-item">
+                <img [src]="item.imageUrl" class="card-img-top" />
+                <div class="close-btn" (click)="removeImageItem(item)">
+                  <button pButton type="button" icon="pi pi-times" iconPos="left" class="p-button-danger p-button-rounded"></button>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #noImage>
+              <img src="assets/img/NoImg.jpg" class="card-img-top" />
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <!--
+      <div class="col-md-3">
+        <div class="card" style="width: 18rem">
+          <ng-container *ngIf="imageUrl.value; else noImage">
+            <img [src]="imageUrl.value" class="card-img-top" />
+          </ng-container>
+          <ng-template #noImage>
+            <img src="assets/img/NoImg.jpg" class="card-img-top" />
+          </ng-template>
+        </div>
+      </div>-->
+
+      <div class="form-group">
+        <label class="control-label">News Category <sup>*</sup></label>
+        <select formControlName="categoryId" id="categoryId" class="form-control">
+          <option *ngFor="let item of newsCategories" [value]="item.id">{{ item['categoryNameVi'] }}</option>
+        </select>
+        <span *ngIf="(categoryId.touched || submitted) && categoryId.errors?.required" id="categoryId"
+          class="error invalid-feedback" style="display: block">Please select News Category</span>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Keyword</label>
+        <input formControlName="keyword" id="keyword" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">From Date</label>
+        <p-calendar formControlName="fromDate" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">To Date</label>
+        <p-calendar formControlName="toDate" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Location</label>
+        <input formControlName="location" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <input formControlName="isActived" id="isActived" name="isActived" type="checkbox" style="margin-left: 0" />
+        <label class="control-label" for="isActived" style="margin-left: 20px">Active</label>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Content</label>
+        <app-ckeditor [content]="contentVi.value" (eventOnChange)="handleValueCkChange($event, 'contentVi')"></app-ckeditor>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Content (English)</label>
+        <app-ckeditor [content]="contentEn.value" (eventOnChange)="handleValueCkChange($event, 'contentEn')"></app-ckeditor>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid">Confirm</button>
+      </div>
+    </form>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

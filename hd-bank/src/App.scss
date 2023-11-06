@@ -1,0 +1,555 @@
+html,
+body {
+  min-height: 100vh;
+  margin: 0px;
+  display: flex;
+  flex: 1;
+  font-family: Lexend-Deca;
+
+  p {
+    color: $deepblue;
+  }
+}
+
+#root {
+  display: flex;
+  flex: 1;
+
+  .App {
+    width: 100%;
+  }
+}
+
+// Component Styles
+.customTextField {
+  .MuiInputBase-root {
+    height: 56px;
+  }
+
+  .iconTextField {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+.MuiTabs-root {
+  background-color: #EBEBEB;
+
+  .MuiButtonBase-root {
+    background-color: #F2F2F2;
+  }
+  .MuiButtonBase-root.Mui-selected {
+    background-color: #FAFAFA;
+  }
+}
+
+
+
+.header-bar {
+  position: relative;
+  .navigate {
+    position: fixed;
+    display: flex;
+    z-index: 10;
+    width: 100%;
+    transition: 0.1s ease-in-out;
+
+    .navigate-container {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: space-between;
+
+      .selected {
+          // border-bottom: 4px solid $deepblue;
+          background-color: $deepblue;
+          border-radius: 1.5px;
+
+          p {
+            color: #fff !important;
+          }
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+        padding: $sp4 0;
+        font-size: $sp16;
+        // width: fit-content;
+        // flex: 1;
+        text-align: center;
+
+         p {
+          font-size: $fontS;
+          // margin-right: 12px;
+          padding: $sp12 $sp16 $sp12 $sp12;
+         }
+
+        &:hover {
+          // border-bottom: 4px solid $deepblue;
+          background-color: $deepblue;
+          border-radius: 1.5px;
+
+          p {
+            color: #fff !important;
+          }
+        }
+      }
+
+      .logo {
+        a {
+          padding: 0;
+          &:hover {
+            border-bottom: none !important;
+            border-radius: none !important;
+          }
+
+          img {
+            object-fit: contain;
+          }
+        }
+      }
+
+      .language-select {
+        margin-left: $sp16;
+        margin-right: -12px;
+
+        .MuiSelect-select {
+          padding-top: 0;
+          padding-bottom: 0;
+          padding-left: 0;
+          border-radius: 0;
+        }
+
+        svg {
+          color: $white;
+        }
+
+        fieldset {
+          border: none;
+          border-radius: 0;
+        }
+
+
+      }
+    }
+
+
+  }
+  .banner {
+    position: relative;
+    padding-top: 84px;
+
+    .background {
+      height: 60vh;
+      position: relative;
+
+      .blur {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .not-blur {
+        height: 100%;
+
+        .home-banner-swiper {
+          z-index: 2;
+    
+
+        }
+
+        .swiper {
+          width: 99.1vw;
+          height: 100%;
+        }
+  
+        .swiper-slide {
+          text-align: center;
+          font-size: 18px;
+          background: #fff;
+  
+          /* Center slide text vertically */
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          -webkit-justify-content: center;
+          justify-content: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          -webkit-align-items: center;
+          align-items: center;
+          background: transparent;
+        }
+  
+        .swiper-pagination {
+          .swiper-pagination-bullet {
+            width: 50px;
+            border-radius: 5px;
+            background: white;
+            opacity: 0.3;
+          }
+  
+          .swiper-pagination-bullet-active {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .content {
+      position: absolute;
+      top: 30%;
+      width: 35%;
+      left: 10%;
+
+      .title {
+        font-size: $fontXXL;
+        font-weight: bold;
+      }
+
+      p {
+        color: white;
+        margin-bottom: $sp20;
+      }
+
+      button {
+        border-radius: $sp8;
+      }
+    }
+
+    .content-text {
+      position: absolute;
+      width: 100%;
+      top: 45%;
+      display: flex;
+      justify-content: center;
+      font-size: $sp60;
+      font-weight: 700;
+      color: white;
+    }
+
+  }
+  .navigate-mobile { display: none;}
+
+}
+
+.footer {
+  width: 100%;
+  background-color: $deepblue;
+  .footer-container {
+    max-width: 1200px;
+    display: flex;
+    padding: $sp80 0;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+
+    .contact {
+      display: flex;
+      justify-content: space-between;
+      padding: $sp24 0;
+      border-bottom: 1px solid rgb(151, 145, 145);
+
+      .title {
+        font-size: $fontXL;
+        color: white;
+        font-weight: 900;
+      }
+
+      button {
+        margin: $sp12 0;
+      }
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      margin-top: $sp60;
+
+      p {
+        color: white;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+        margin-bottom: $sp12;
+      }
+
+      .item1 {
+        .logo {
+          width: 176px;
+          height: 80px;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+
+      .item2 {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.app-loading {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: $black;
+  z-index: 99999;
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 1441px) {
+  .header-bar {
+    .banner {
+      .background {
+        .not-blur {
+          .swiper {
+            width: 100vw !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    .footer-container {
+      padding: $sp80 $sp40;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-bar {
+    // width: 100vw;
+    .navigate {
+      display: none;
+
+    }
+
+    .navigate-mobile {
+      display: flex;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      z-index: 999;
+      width: 100%;
+      background-color: white;
+
+      .menu {
+        position: relative;
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+
+        .nav-mobile {
+          position: absolute;
+          top: 64px;
+          display: block;
+          background: white;
+          height: 100vh !important;
+          box-shadow: -12px 20px 20px rgba(87, 87, 87, 0.25);
+         
+          .nav {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            margin-right: $sp12;
+            a {
+              color: $deepblue;
+              text-decoration: none;
+              margin-bottom: $sp24;
+              margin-left: $sp12;
+              font-size: $sp12;
+              font-weight: 600;
+              width: 200px;
+              text-align: end;
+            }
+            .selected {
+              color: $cyan;
+            }
+          }
+        }
+      }
+
+      .language-select {
+        margin-left: $sp16;
+        margin-right: -12px;
+
+        .MuiSelect-select {
+          padding-top: 0;
+          padding-bottom: 0;
+          padding-left: 0;
+          border-radius: 0;
+        }
+
+        svg {
+          color: $white;
+        }
+
+        fieldset {
+          border: none;
+          border-radius: 0;
+        }
+
+
+      }
+    }
+    
+    .banner {
+      padding-top: $sp60;
+
+      .content {
+        width: 80% !important;
+        top: 40%!important;
+  
+        .title {
+          font-size: $sp28 !important;
+        }
+      }
+
+      .content-text {
+        font-size: $sp28;
+      }
+    }
+  }
+  .footer {
+    .footer-container {
+      flex-direction: column !important;
+      padding: $sp40 $sp20 0 $sp20 !important;
+
+      .contact {
+        flex-direction: column;
+
+        .title {
+          font-size: $sp28;
+        }
+
+        button {
+          width: fit-content !important;
+        }
+      }
+
+      .info {
+        flex-direction: column;
+        margin-top: $sp52 !important;
+        margin-bottom: $sp52 !important;
+
+        .item2 {
+          margin-top: $sp20;
+        }
+      }
+    }
+  }
+
+  .relate-template {
+    display: block !important;
+
+    .image {
+      width: 100% !important;
+    }
+
+    .content-relate {
+      width: 100% !important;
+    }
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .header-bar {
+    .banner {
+      .content {
+        .title {
+          font-size: $sp20 !important;
+        }
+  
+        p {
+          font-size: $sp12 !important;
+        }
+      }
+
+      .content-text {
+        font-size: $sp20;
+      }
+
+      .background {
+        height: 30vh;
+      }
+    }
+
+  }
+
+  .footer {
+    .footer-container {
+      .contact {
+        .title {
+          font-size: $sp24;
+        }
+      }
+    }
+  }
+}
+
+.background-icon {
+  border-radius: 100px;
+  display: flex;
+  padding: 5px;
+  margin-right: $sp12;
+  color: black;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 2vh;
+  right: 2vh;
+  z-index: 9;
+  animation: fadeIn 0.3s;
+  transition: opacity 0.4s;
+  .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    background-color: rgb(247, 89, 89);
+  }
+  .css-78trlr-MuiButtonBase-root-MuiIconButton-root:hover {
+    background-color: red;
+  }
+  svg {
+    color: #fff;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.services-mobile {
+  .swiper-pagination {
+    position: relative;
+    margin-top: $sp24;
+  }
+}

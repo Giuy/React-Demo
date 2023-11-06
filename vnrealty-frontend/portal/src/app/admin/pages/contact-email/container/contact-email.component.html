@@ -1,0 +1,118 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+        (click)="openNew()"></button>
+      <!-- <app-select-company></app-select-company> -->
+    </ng-template>
+  </p-toolbar>
+
+  <p-table able #dt dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [value]="contactEmails" [rows]="20" [paginator]="true" [rowHover]="true" [(selection)]="selectedItems"
+    [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Email Liên Hệ</h5>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <!-- <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th> -->
+        <th *ngFor="let col of cols">
+          {{ col.header }}
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <!-- <td>
+          <p-tableCheckbox [value]="item"></p-tableCheckbox>
+        </td> -->
+        <td>{{ item.senderEmailAddress }}</td>
+        <td>{{ item.recieverEmailAddress }}</td>
+        <td>{{ item.recieveCompany }}</td>
+        <td>
+          <p-inputSwitch (onChange)="handleChangeActive($event, item, 'isActive')" [(ngModel)]="item.isActive">
+          </p-inputSwitch>
+        </td>
+        <td>{{ item.created | date: 'dd/MM/yyyy' }}</td>
+
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+            (click)="openEdit(item)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+            (click)="deleteContactEmail(item)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are {{ contactEmails ? contactEmails.length : 0 }} items.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="dialog" [style]="{ width: '880px' }"
+  [header]="editMode ? 'Chỉnh sửa Email Liên Hệ' : 'Thêm Email Liên Hệ'" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="control-label">Email gửi</label>
+        <input formControlName="senderEmailAddress" id="senderEmailAddress" type="text" class="form-control" />
+        <span *ngIf="(senderEmailAddress.touched || submitted) && senderEmailAddress.errors?.required"
+          id="senderEmailAddress" class="error invalid-feedback" style="display: block">Xin hãy nhập email gửi</span>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Password</label>
+        <input formControlName="senderEmailPassword" id="senderEmailPassword" type="password" class="form-control" />
+        <span *ngIf="(senderEmailPassword.touched || submitted) && senderEmailPassword.errors?.required"
+          id="senderEmailPassword" class="error invalid-feedback" style="display: block">Xin hãy nhập password</span>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Công ty nhận</label>
+        <input formControlName="recieveCompany" id="recieveCompany" type="text" class="form-control" />
+        <span *ngIf="(recieveCompany.touched || submitted) && recieveCompany.errors?.required" id="recieveCompany"
+          class="error invalid-feedback" style="display: block">Xin hãy nhập công ty nhận</span>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Phòng ban nhận</label>
+        <input formControlName="recieveDepartment" id="recieveDepartment" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Regard Text</label>
+        <input formControlName="regardsText" id="regardsText" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Email Notes</label>
+        <input formControlName="emailNoted" id="emailNoted" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Mô tả</label>
+        <input formControlName="descriptions" id="descriptions" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <input formControlName="isActive" id="isActive" name="isActive" type="checkbox" style="margin-left: 0" />
+        <label class="control-label" for="isActive" style="margin-left: 20px">Làm email chính</label>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid">Xác nhận</button>
+      </div>
+    </form>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

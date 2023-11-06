@@ -1,0 +1,5 @@
+.disabled-button:disabled,
+.disabled-button[disabled]{
+  cursor: default;
+  border: unset;
+}

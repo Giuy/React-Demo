@@ -1,0 +1,23 @@
+.management-container {
+    background-color: #f7f7f7;
+    
+    .card {
+        margin: 40px;
+        padding: 20px;
+
+        .w-full {
+            width: 100%;
+        }
+    }
+}
+.file-panel{
+    margin-left: 0px;
+    margin-top:10px;
+    padding: 10px;
+    align-items: center;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    
+}
+.p-calendar{
+    width:300px;
+}

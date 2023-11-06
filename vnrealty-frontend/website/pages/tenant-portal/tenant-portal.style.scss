@@ -1,0 +1,67 @@
+.tenant-portal-container {
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+  .section {
+    margin-bottom: $sp60;
+
+    .image {
+      position: relative;
+      max-width: 636px;
+      height: 486px;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    .descriptions {
+      margin-top: $sp16;
+
+      .main-title {
+        font-size: $sp40;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+    }
+
+    .request-maintenance {
+      border: 1px solid $gray300;
+      padding: $sp24;
+      background-color: #444444EB;
+      margin: auto 0;
+      min-height: 330px;
+      display: flex;
+      align-items: center;
+
+      .title {
+        color: $orangerYellow;
+        font-size: $sp28;
+        font-weight: 700;
+      }
+
+      .content {
+        margin-top: $sp16;
+        color: $white;
+        font-weight: 600;
+      }
+    }
+
+    button {
+      width: auto;
+      font-weight: 600;
+      border-radius: 0;
+      padding: $sp8 $sp24;
+      color: $white;
+      background-color: $brightGreen;
+      border: 0;
+      transition: $mediumTransition;
+
+      &:hover {
+        color: $white;
+        background-color: #118a72;
+        transition: $mediumTransition;
+      }
+    }
+  }
+}

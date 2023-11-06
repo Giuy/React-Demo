@@ -1,0 +1,105 @@
+.image-gallery-dialog-container {
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .image-detail {
+    position: fixed;
+    background-color: #000000b8;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    transition: $fastTransition;
+
+    .image-frame {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: auto 0;
+      animation: fade-in $fastTransition;
+
+      .image-box {
+        position: relative;
+        width: 80vh;
+        height: 80vh;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+          box-shadow: #32325d40 0px 6px 12px -2px, #0000004d 0px 3px 7px -3px;
+          margin: auto;
+        }
+      }
+
+      .image-index {
+        color: $white;
+        text-transform: lowercase;
+        z-index: 2;
+      }
+    }
+
+    .slide-button {
+      padding: 0;
+      min-width: 40px;
+      min-height: 40px;
+      top: 50%;
+      position: absolute;
+      z-index: 20;
+      &.Mui-disabled {
+        svg {
+          color: $gray400;
+        }
+      }
+
+      svg {
+        color: $gray400;
+        font-size: $sp60;
+        transition: $mediumTransition;
+
+        &:hover {
+          cursor: pointer;
+          opacity: 0.7;
+          transition: $mediumTransition;
+        }
+      }
+
+      &.prev {
+        left: 0;
+      }
+
+      &.next {
+        right: 0;
+      }
+    }
+
+    .close-button {
+      svg {
+        position: absolute;
+        right: 0;
+        border-radius: 50%;
+        background: $red;
+        color: $white;
+        margin: $sp12;
+        padding: $sp4;
+        font-size: $sp32;
+        z-index: 2;
+        transition: $mediumTransition;
+
+        &:hover {
+          cursor: pointer;
+          opacity: 0.7;
+          transition: $mediumTransition;
+        }
+      }
+    }
+  }
+}

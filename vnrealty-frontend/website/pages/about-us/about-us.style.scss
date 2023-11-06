@@ -1,0 +1,132 @@
+.about-us-container {
+  margin-top: $sp60;
+
+  .section {
+    margin-top: $sp60;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    .mission-vision-image {
+      position: relative;
+      max-width: 526px;
+      height: 300px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .our-service-background {
+      position: relative;
+      max-width: 636px;
+      height: 700px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .title {
+      font-size: $sp20;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .accordion-our-service {
+      margin: $sp20 0;
+
+      .MuiPaper-elevation {
+        background-color: transparent;
+        border-radius: unset;
+        box-shadow: unset;
+
+        .MuiButtonBase-root {
+          background-color: $gray400;
+        }
+
+        .MuiAccordion-region {
+          max-height: 300px;
+          overflow-y: scroll;
+        }
+      }
+    }
+
+    .avatar {
+      position: relative;
+      margin: auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .social-network {
+      color: $white;
+
+      p {
+        width: 30px;
+        background: #3b5998;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .partners-images {
+      position: relative;
+      overflow: hidden;
+
+      .image {
+        max-width: 150px;
+        max-height: 150px;
+        margin: 0 auto;
+        padding: 0 $sp32;
+        transition: $mediumTransition;
+
+        &:hover {
+          max-width: 140px;
+          max-height: 140px;
+          transition: $mediumTransition;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          height: 100%;
+          top: 0;
+          left: -1px;
+          border-left: 1px dashed #ddd;
+          box-sizing: border-box;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 0;
+          top: auto;
+          left: 0;
+          bottom: -1px;
+          border-bottom: 1px dashed #ddd;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+}

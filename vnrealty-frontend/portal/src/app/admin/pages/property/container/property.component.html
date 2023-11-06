@@ -1,0 +1,121 @@
+<p-toast></p-toast>
+<div [ngClass]="loading ? 'block' : 'hide'">
+  <p-progressBar mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>
+
+</div>
+<div class="card property-main">
+  <p-table able #dt dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [value]="listCommonListInfo" [rowHover]="true" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="flex flex-row justify-between">
+        <div class="p-d-flex p-ai-center p-jc-between">
+          <h5 class="pb-2">My Property</h5>
+        </div>
+
+
+      </div>
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <div class="form-group mr-3">
+          <div class="custom-input lesing-input">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" class="form-control" (change)="onChangeTitleFitler($event.target.value)"
+              placeholder="Enter keyword to find Property ID, Address" />
+          </div>
+        </div>
+
+      </div>
+      <div id="list-status" class="flex flex-wrap gap-3">
+        <div id="status" (click)="selectStatus(item)" *ngFor="let item of listStatus;index as i"
+          [ngClass]="{'border-blue':item.status==1,'border-red':item.status==6,'border-green':item.status==3,'active':item.status==status}"
+          class=" py-1 px-3 border-all ">
+          {{item.displayStatus}} ({{item.propertyCount}})
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+       <ng-container *ngFor="let col of cols">
+        <th style="width:200px;" >
+          {{ col.header }}
+        </th>
+       </ng-container>
+       
+        <th style="width:200px;">Action</th>
+
+      </tr>
+    </ng-template>
+      <ng-template pTemplate="body" let-item>
+
+        <tr>
+          <ng-container *ngFor="item of listCommonListInfo">
+
+          </ng-container>
+          <!-- <td>
+            <p-tableCheckbox [value]="item"></p-tableCheckbox>
+          </td> -->
+          <td>
+            {{ item.propertyId }}
+          </td>
+          <td>
+            {{ item.location }}
+          </td>
+          <!-- <td>
+            <img [src]="item.listImages.length == 0 ? 'assets/img/NoImg.jpg' : item.listImages[0].imageUrl" alt=""
+              style="width: 50px; height: 50px; object-fit: cover; object-position: top" />
+          </td> -->
+          <td>
+            <span *ngIf="item.transactionType==1">Rent</span>
+            <span *ngIf="item.transactionType==2">Sale</span>
+          </td>
+          <td style="font-weight: bold">
+            {{item?.price | number: '.2'}}
+          </td>
+          <td>
+            <p-chip label="Leasing" styleClass="leasing" *ngIf="item.status==3">
+            </p-chip>
+            <p-chip label="Available" styleClass="available" *ngIf="item.status==1">
+            </p-chip>
+            <p-chip label="Expired" styleClass="expired" *ngIf="item.status==6">
+            </p-chip>
+            <p-chip label="Changed owner" styleClass="changed-owner" *ngIf="item.status==5">
+            </p-chip>
+          </td>
+          <td>
+            <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
+              (click)="openDetail(item)"></button>
+            <button pButton pRipple icon="pi pi-clock" class="p-button-rounded p-button-warning ml-2"
+              (click)="history(item)"></button>
+          </td>
+        </tr>
+
+
+      </ng-template>
+  </p-table>
+  <p-paginator [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rows]="pageSize"
+    [totalRecords]="totalRecords" (onPageChange)="pageChange($event)">
+  </p-paginator>
+</div>
+<div class="card-history">
+  <p-dialog [(visible)]="dialogHistory" [style]="{ width: '800px' }" [header]="'PROPERTY HISTORY'" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <ng-container *ngFor="let item of historySteps; index as i">
+        <div style="position: relative;">
+          <div *ngIf="i !== 0" class="line" style="height: 80px; border-left: 1px solid #BDBDBD; margin-left: 11px;">
+          </div>
+          <div style="display: flex; padding: 20px 0; align-items: center;">
+            <div class="mr-5 ticked">
+              <i class="pi pi-check"></i>
+            </div>
+            <div>
+              <p style="font-weight: bold; margin-bottom: 0;">{{item?.fromTime | date: 'dd/MM/yyyy'}}</p>
+              <p style="margin-bottom: 0;">{{item?.descriptions}}</p>
+            </div>
+          </div>
+
+        </div>
+      </ng-container>
+    </ng-template>
+  </p-dialog>
+</div>

@@ -1,0 +1,84 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <form [formGroup]="form" style="background-color: #f7f7f7">
+    <p-toolbar styleClass="p-mb-0">
+      <ng-template pTemplate="left">
+        <h5 class="p-m-0">Common Config</h5>
+      </ng-template>
+    </p-toolbar>
+
+    <p-toolbar styleClass="p-mb-4">
+      <ng-template pTemplate="left">
+        <p-dropdown [options]="arrCommonConfigType" optionLabel="name" optionValue="id" formControlName="commonConfigType"
+          placeholder="Select Type" [style]="{ width: '200px' }" [showClear]="true" (onChange)="onCommonConfigTypeChange($event.value)">
+        </p-dropdown>
+      </ng-template>
+      <ng-template pTemplate="right">
+        <button class="p-button-success p-mr-2" pButton pRipple icon="pi pi-save" label="Save" 
+          [disabled]="commonConfigType.value == undefined || commonConfigType.value.id == undefined" (click)="handleSubmit()">
+        </button>
+      </ng-template>
+    </p-toolbar>
+
+    <div class="management-container" *ngIf="commonConfigType.value != null" [formGroup]="formDetail">
+      
+      
+      <p-panel styleClass="panel-common-config" [toggleable]="true" [collapsed]="true" *ngFor="let group of arrGroupField" >
+        <ng-template pTemplate="header">
+          {{ group.group }}
+        </ng-template>
+        <!-- Body -->
+        <div class="p-field" *ngFor="let field of group.arrField">
+          <ng-container *ngIf="field.fieldType == 'text'">
+            <h5>{{ field.fieldName }}</h5>
+            <input [formControlName]="field.fieldId" [id]="field.fieldId" type="text" class="form-control" />
+          </ng-container>
+          <ng-container *ngIf="field.fieldType == 'textArea'">
+            <h5>{{ field.fieldName }}</h5>
+            <textarea [formControlName]="field.fieldId" [id]="field.fieldId" class="form-control"></textarea>
+          </ng-container>
+
+          <ng-container *ngIf="field.fieldType == 'richText'">
+            <h5>{{ field.fieldName }}</h5>
+            <app-ckeditor [content]="formDetail.get(field.fieldId).value" (eventOnChange)="handleCkChange($event, field.fieldId)">
+            </app-ckeditor>
+          </ng-container>
+          
+          <ng-container *ngIf="field.fieldType == 'chips'">
+            <h5>{{ field.fieldName }}</h5>
+            <p-chips [formControlName]="field.fieldId" class="chips-full-width"></p-chips>
+          </ng-container>
+          <ng-container *ngIf="field.fieldType == 'file'">
+            <h5>{{ field.fieldName }}</h5>
+            <button pButton pRipple label="Choose" icon="pi pi-plus" (click)="chooseFile($event, field.fieldId)"></button>
+            <input [id]="field.fieldId" type="file" class="form-control" (change)="onFileChange($event, field.fieldId)" style="display: none;"/>
+
+            <ng-container *ngIf="getFileDataById(field.fieldId) != undefined && getFileDataById(field.fieldId).fileInfo != undefined">
+              <div class="row file-panel" >
+                <div class="col-5">{{getFileNameById(field.fieldId)}}</div>
+                <div class="col-5">{{getFileSizeById(field.fieldId)}} kB</div>
+                <div class="col-2">
+                  <button pButton type="button" class="p-button-rounded p-button-danger" icon="pi pi-times" iconPos="left" (click)="removeFile(field.fieldId)"></button>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="getFileInfoById(field.fieldId) != undefined && getFileInfoUrlById(field.fieldId) != ''">
+              <div class="row file-panel" >
+                <a class="col-5" target="_blank" [href]="getFileInfoUrlById(field.fieldId)">{{getFileInfoNameById(field.fieldId)}}</a>
+                <div class="col-5">{{getFileInfoSizeById(field.fieldId)}} kB</div>
+                <div class="col-2">
+                  <button pButton type="button" class="p-button-rounded p-button-danger" icon="pi pi-times" iconPos="left" (click)="removeFile(field.fieldId)"></button>
+                </div>
+              </div>
+            </ng-container>
+
+          </ng-container>
+        </div>
+      </p-panel>
+
+    </div>
+  </form>
+</div>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

@@ -1,0 +1,42 @@
+.home-container {
+  .contact-now-line {
+    display: flex;
+    justify-content: space-between;
+    background-color: $brightGreen;
+    padding: $sp28;
+
+    .title {
+      color: $white;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .contact-now-btn {
+      font-weight: 600;
+      color: $white;
+      background-color: $orangerYellow;
+      padding: $sp8 $sp16;
+      text-transform: uppercase;
+      width: fit-content;
+      transition: $mediumTransition;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $white;
+        color: $black;
+        transition: $mediumTransition;
+      }
+
+      @media screen and (max-width: 992px) {
+        margin-top: $sp8;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      display: block;
+      text-align: center;
+    }
+  }
+}

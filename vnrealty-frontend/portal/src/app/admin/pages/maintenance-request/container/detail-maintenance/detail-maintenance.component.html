@@ -1,0 +1,68 @@
+<div>
+  <div class="title">
+    MAINTENANCE REQUEST INFORMATION
+  </div>
+  <div>
+    <div class="border-b">
+      PROPERTY INFORMATION
+    </div>
+    <div class="pl-6">
+      {{request?.property?.location}} | {{request?.property?.hostInformation}} | {{request?.property?.propertyId}}
+    </div>
+  </div>
+  <div>
+    <div class="border-b">
+      MAINTENANCE AREA
+    </div>
+    <div class="pl-6">
+      <div *ngFor="let item of request?.listMaintenanceArea">
+        <div >- {{item?.masterData?.name}}</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="border-b">
+      ERROR TYPE
+    </div>
+    <div class="pl-6">
+      <div *ngFor="let item of request?.listErrorType">
+        <div >- {{item?.masterData?.name}}</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="border-b">
+      ERROR DETAILS
+    </div>
+    <div class="pl-6">
+      <div *ngFor="let item of request?.listErrorDetails">
+        <div >- {{item?.masterData?.name}}</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="border-b">
+     NOTES
+    </div>
+    <div class="pl-6">
+      <div >
+        {{request?.notes}}
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="border-b">
+     IMAGES
+    </div>
+    <div>
+      <div class="grid" >
+        <div class="xl:col-4 md:col-6 col-12" *ngFor="let item of request?.maintenanceRequestImages">
+          <img class="w-100" [src]="item.imageUrl" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-content-end m-5">
+    <p-button onclick="window.history.go(-1); return false;" label="Back"></p-button>
+  </div>
+</div>

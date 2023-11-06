@@ -1,0 +1,67 @@
+// Colors
+$gray200: #fafafa;
+$gray300: #efefef;
+$white: #ffffff;
+$black: #000000;
+$blue: #1a67dc;
+$blue200: #c8deff;
+$blue300: #0464CB;
+$lightGray: #f3f5f7;
+$greenDark: #004029;
+$greenLight: #8CC63F;
+$red: #d32f2f;
+$mediumGray: #64706c;
+$orange: #ff9966;
+$deepblue: #1d2d3e;
+$mediumBlue: #0464CB;
+$gray700: #575C69;
+$cyan: #26AEA5;
+
+// Font Size
+$fontS: 12px;
+$fontM: 16px;
+$fontMP: 20px;
+$fontL: 24px;
+$fontXL: 36px;
+$fontXXL: 48px;
+
+// Font weight
+$light: 300;
+$regular: 400;
+$semiBold: 600;
+$bold: 900;
+
+// Spacing
+$sp4: 4px;
+$sp8: 8px;
+$sp12: 12px;
+$sp16: 16px;
+$sp20: 20px;
+$sp24: 24px;
+$sp28: 28px;
+$sp32: 32px;
+$sp36: 36px;
+$sp40: 40px;
+$sp44: 44px;
+$sp48: 48px;
+$sp52: 52px;
+$sp56: 56px;
+$sp60: 60px;
+$sp80: 80px;
+$sp96: 96px;
+$sp112: 112px;
+$sp180: 180px;
+
+// Alignments
+%verticalCenter {
+  display: flex;
+  align-items: center;
+}
+
+// Text
+%textEllipsis {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

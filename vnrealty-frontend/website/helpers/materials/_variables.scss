@@ -1,0 +1,99 @@
+// Colors
+$white: #ffffff;
+$black: #000000;
+$gray200: #eee;
+$gray300: #e8eaed;
+$gray400: #e5e5e5;
+$lightGray: #ddd;
+$mediumGray: #888;
+$red: #d32f2f;
+$redDark: #b91c1c;
+$purpleBlue: #2c3e50;
+$brightGreen: #1abc9c;
+$darkGreen: #139f83;
+$orangerYellow: #f0ad4e;
+$darkOrangerYellow: #bb8437;
+$redRose: #fef6f3;
+
+// Font Size
+$fontS: 12px;
+$fontSP: 14px;
+$fontM: 16px;
+$fontMP: 20px;
+$fontL: 24px;
+$fontXL: 36px;
+$fontXXL: 55px;
+
+// Font weight
+$regular: 300;
+$semiBold: 600;
+$bold: 900;
+
+// Font Family
+$font1: "Montserrat";
+$font2: "mongolian-baiti-regular";
+$font3: "SVN-Darleston";
+
+// Spacing
+$sp4: 4px;
+$sp8: 8px;
+$sp12: 12px;
+$sp16: 16px;
+$sp20: 20px;
+$sp24: 24px;
+$sp28: 28px;
+$sp32: 32px;
+$sp36: 36px;
+$sp40: 40px;
+$sp44: 44px;
+$sp48: 48px;
+$sp52: 52px;
+$sp56: 56px;
+$sp60: 60px;
+$sp68: 68px;
+$sp80: 80px;
+$sp88: 88px;
+$sp96: 96px;
+$sp112: 112px;
+$sp128: 128px;
+$sp136: 136px;
+$sp280: 280px;
+$sp400: 400px;
+$sp440: 440px;
+$sp600: 600px;
+
+// Transiction
+$fastTransition: 0.1s;
+$mediumTransition: 0.2s;
+$lowTransition: 0.3s;
+
+// Alignments
+%verticalCenter {
+  display: flex;
+  align-items: center;
+}
+
+// Text
+%textEllipsis {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+%selectBox {
+  svg {
+    color: $white;
+  }
+
+  .MuiSelect-select {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    color: $white;
+  }
+
+  fieldset {
+    border: none;
+  }
+}

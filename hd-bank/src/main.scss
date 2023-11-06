@@ -1,0 +1,24 @@
+// Variables
+@import "./helpers/materials/variables";
+
+// Styled
+@import "./helpers/materials/styled";
+
+// Components
+@import "./App.scss";
+@import "./views/auth/login/login-style.scss";
+@import "./views/about-us/about-us.scss";
+@import "./views/component/component.scss";
+@import "./views//business-fields/business-fields.scss";
+@import "./views/business-fields/tabs/tabs.scss";
+@import "./views/news/news.scss";
+@import "./views/news/tabs/tabs.scss";
+@import "./views/hire/hire.scss";
+@import "./views//hire/tabs/tabs.scss";
+@import "./views/contact/contact.scss";
+@import "./views/home/home.scss";
+
+@font-face {
+    font-family: Lexend-Deca;
+    src: url("./assets/font/LexendDeca-Regular.ttf");
+}

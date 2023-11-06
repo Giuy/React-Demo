@@ -1,0 +1,83 @@
+.contact-container {
+  .contact-information {
+    position: relative;
+    padding: $sp4;
+    height: 100%;
+
+    .contact-image {
+      position: relative;
+      width: 60%;
+      height: 500px;
+      margin-top: 30px;
+      z-index: 2;
+      box-shadow: 0 0 40px rgb(0 0 0 / 30%);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      @media screen and (max-width: 991px) {
+        width: 100%;
+      }
+    }
+
+    .information {
+      position: absolute;
+      display: block;
+      background-color: $brightGreen;
+      color: $white;
+      padding: 5% 15%;
+      top: 0;
+      right: 0;
+      width: 50%;
+      z-index: 0;
+
+      .info-section {
+        margin-bottom: $sp20;
+
+        .title {
+          font-size: 14px;
+          color: $gray300;
+        }
+      }
+
+      @media screen and (max-width: 991px) {
+        position: unset;
+        width: 100%;
+      }
+    }
+  }
+
+  .contact-form {
+    box-shadow: 0 0 40px rgb(0 0 0 / 30%);
+    padding: 3% 10%;
+
+    .title {
+      font-weight: 700;
+      color: $black;
+      font-size: $sp20;
+    }
+
+    .form {
+      button {
+        padding: $sp8 $sp24;
+        font-size: $sp12;
+        text-transform: uppercase;
+        width: auto;
+        color: $white;
+        background-color: $brightGreen;
+        border: 1px solid $mediumGray;
+        border: unset;
+        transition: $mediumTransition;
+
+        &:hover {
+          color: $white;
+          background-color: #118a72;
+          transition: $mediumTransition;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.comming-soon-container {
+    min-height: 100vh;
+    padding: $sp112 0;
+    background-color: #adadad;
+
+    .card {
+        box-shadow: #64646f33 0px 7px 29px 0px;
+        margin-top: $sp60 0;
+        min-width: 300px;
+        width: 100%;
+        height: 100%;
+        background-color: $white;
+        margin: auto;
+        padding: 5%;
+
+        .image {
+            width: 100%;
+            height: 100%;
+            max-width: 150px;
+            max-height: 150px;
+            margin: auto;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        .title {
+            margin: auto;
+            font-size: $sp20;
+            margin-top: $sp20;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $mediumGray;
+        }
+    }
+}

@@ -1,0 +1,46 @@
+.quick-quote {
+  background-color: $brightGreen;
+  padding: 64px;
+  &__title {
+    font-size: 24px;
+    color: #eee;
+    margin: 0 0 30px;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .item {
+      background-color: rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(0, 0, 0, 0.2);
+      padding: 8px 14px;
+      // color: #ddd;
+      &:focus {
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        outline: none;
+      }
+      &::placeholder {
+        color: #bbb;
+      }
+    }
+    .button {
+      outline: none;
+      font-size: $fontSP;
+      padding: $sp8 $sp16;
+      width: 50%;
+      border: none;
+      border-radius: $sp4;
+      background: #f9f9f9;
+      text-transform: uppercase;
+      font-weight: 500;
+      &:hover {
+        color: #fff;
+      }
+      
+    }
+    .error {
+        color: red;
+        font-size: 12px;
+    }
+  }
+}

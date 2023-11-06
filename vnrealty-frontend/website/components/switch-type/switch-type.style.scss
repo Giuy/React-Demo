@@ -1,0 +1,49 @@
+.switch-type-container {
+  .switch-option-container {
+    .switch-form {
+      position: relative;
+      text-align: center;
+      width: 128px;
+      overflow: hidden;
+      border-radius: $sp8;
+      box-shadow: #0000001a 0px 0px 5px 0px, #0000001a 0px 0px 1px 0px;
+
+      .switch-button {
+        padding: 0;
+        margin-left: 0;
+        width: 100%;
+        transition: $mediumTransition;
+        cursor: pointer;
+
+        .option {
+          display: table-cell;
+          width: 64px;
+          max-width: 64px;
+          min-width: 64px;
+          padding: $sp8 $sp12;
+          font-weight: 600;
+          cursor: pointer;
+
+          &.left-option {
+            color: $white;
+            background-color: $brightGreen;
+          }
+
+          &.blank-option {
+            background-color: $white;
+          }
+
+          &.right-option {
+            color: $white;
+            background-color: $brightGreen;
+          }
+        }
+
+        &.on {
+          margin-left: -64px;
+          transition: $mediumTransition;
+        }
+      }
+    }
+  }
+}

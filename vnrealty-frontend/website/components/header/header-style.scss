@@ -1,0 +1,403 @@
+.header-container {
+  position: relative;
+  color: $white;
+
+  .header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    transition: $mediumTransition;
+    background-color: transparent;
+    z-index: 999;
+
+    &.header-hompage {
+      background-color: #2c3e50;
+    }
+
+    .bottom-header {
+      padding-top: $sp4;
+      padding-bottom: $sp4;
+      transition: $lowTransition;
+
+      .container {
+        .logo {
+          width: 122px;
+          height: 80px;
+          max-width: 122px;
+          max-height: 80px;
+          position: relative;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .menu {
+          margin: auto 0;
+
+          ul {
+            margin: 0;
+            list-style-type: none;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            flex-wrap: wrap;
+            overflow: hidden;
+
+            li {
+              padding: $sp4 $sp20;
+              float: left;
+              p.colorScroll {
+                color: #212529;
+              }
+              p {
+                position: relative;
+                margin: 0;
+                text-transform: uppercase;
+                color: white;
+                font-size: 13px;
+                font-weight: 550;
+                transition: $fastTransition;
+
+                &::before {
+                  content: "";
+                  position: absolute;
+                  width: 0%;
+                  height: 2px;
+                  background-color: rgb(39, 170, 225);
+                  bottom: -4px;
+                  left: 0;
+                  transition: $fastTransition;
+                }
+
+                &:hover {
+                  cursor: pointer;
+                  color: rgb(39, 170, 225);
+                  transition: $fastTransition;
+
+                  &::before {
+                    width: 100%;
+                    transition: $fastTransition;
+                  }
+                }
+
+                &.active {
+                  &::before {
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 2px;
+                    background-color: $white;
+                    bottom: -4px;
+                    left: 0;
+                  }
+                }
+              }
+              p.active {
+                color: rgb(39, 170, 225);
+                &::before {
+                  background-color: rgb(39, 170, 225);
+                }
+              }
+            }
+          }
+        }
+
+        @media screen and (max-width: 1200px) {
+          width: 100%;
+          max-width: unset;
+        }
+
+        .menu-mobile {
+          height: 0px;
+          transition: $mediumTransition;
+
+          &.opened {
+            height: 310px;
+            position: relative;
+            overflow: hidden;
+            transition: $mediumTransition;
+          }
+
+          ul {
+            list-style: none;
+            padding: $sp8 $sp16;
+
+            li {
+              padding: $sp12;
+              border-bottom: 1px solid $mediumGray;
+
+              p {
+                position: relative;
+                font-size: 11px;
+                text-transform: uppercase;
+
+                &.active {
+                  color: #7a7a7a;
+                }
+              }
+
+              &:last-child {
+                padding-bottom: 0;
+                border-bottom: none;
+              }
+            }
+          }
+        }
+      }
+
+      &-mobile {
+        background-color: #333 !important;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      position: relative;
+    }
+  }
+  .header.header-hompage .bottom-header .container .menu ul li p {
+    color: #212529;
+  }
+  .header.header-hompage .bottom-header .container .menu ul li p:hover {
+    color: rgb(39, 170, 225);
+  }
+  .banner {
+    position: relative;
+    display: inline-block;
+    background-color: $mediumGray;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+
+    .swiper {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+
+      .banner-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 500px;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          background: #060606a6;
+          z-index: 3;
+        }
+      }
+    }
+
+    .banner-title {
+      display: flex;
+      width: 100%;
+      height: 500px;
+      justify-content: center;
+      align-items: end;
+      pointer-events: none;
+      overflow: hidden;
+
+      .title {
+        color: $white;
+        text-align: center;
+        margin: auto;
+        z-index: 3;
+
+        p {
+          letter-spacing: $sp4;
+        }
+
+        .page-name {
+          font-size: $sp40;
+          font-weight: 500;
+          text-transform: uppercase;
+        }
+
+        @media screen and (max-width: 768px) {
+          h1 {
+            font-size: $sp36;
+          }
+
+          p {
+            font-size: $sp12;
+          }
+        }
+
+        .breadcrumbs {
+          font-size: $sp16;
+
+          span {
+            text-transform: capitalize;
+            transition: $mediumTransition;
+
+            &:first-child:hover {
+              cursor: pointer;
+              opacity: 0.8;
+              transition: $mediumTransition;
+            }
+          }
+        }
+      }
+    }
+
+    .banner-title-hompage {
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+
+      .home-greeting {
+        .greeting {
+          position: relative;
+          padding: $sp16;
+          font-size: $sp40;
+          font-weight: 600;
+          line-height: 1;
+
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 8px;
+            height: 120%;
+            background-color: #0e62aa;
+          }
+        }
+
+        .greeting-content {
+          padding-left: $sp16;
+        }
+      }
+
+      .our-service {
+        background-color: #0000005c;
+
+        .our-service-title {
+          font-size: $sp40;
+        }
+
+        .our-service-body {
+          padding-left: $sp32;
+
+          .section {
+            p {
+              color: $white;
+
+              &:first-child {
+                font-size: $sp28;
+                margin-bottom: $sp8;
+              }
+
+              &:last-child {
+                padding: 0 $sp12;
+                margin-bottom: $sp40;
+              }
+            }
+          }
+
+          .view-more {
+            font-weight: 600;
+            text-decoration: underline;
+            color: #5f9fef;
+            pointer-events: visible;
+            transition: $mediumTransition;
+
+            &:hover {
+              cursor: pointer;
+              color: $white;
+              transition: $mediumTransition;
+            }
+          }
+        }
+      }
+    }
+
+    .search-box {
+      position: relative;
+      color: $black;
+      width: 100%;
+      padding-top: 150px;
+      padding-left: 10%;
+      padding-right: 10%;
+      z-index: 2;
+
+      @media screen and (max-width: 991px) {
+        padding-top: 50px;
+      }
+
+      @media screen and (max-width: 1290px) {
+        padding-left: 2%;
+        padding-right: 2%;
+      }
+    }
+  }
+
+  .full-screen {
+    min-height: 800px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .header-container
+    .banner
+    .banner-title-hompage
+    .our-service
+    .our-service-body {
+    padding-left: 0px !important;
+    margin-top: 16px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .header-container
+    .banner
+    .banner-title-hompage
+    .our-service
+    .our-service-body
+    .section
+    p:last-child {
+    margin-bottom: 12px !important;
+  }
+
+  // .header-container {
+  //   .banner {
+  //     &.full-screen {
+  //       height: 1000px !important;
+  //     }
+  //   }
+  // }
+
+  .header-container .swiper {
+    // height: 1000px !important;
+  }
+
+  .swiper-horizontal > .swiper-pagination-bullets,
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 48px !important;
+  }
+}
+
+.banner-title {
+  a {
+    pointer-events: visible;
+  }
+}

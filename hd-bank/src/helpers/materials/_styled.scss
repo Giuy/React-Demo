@@ -1,0 +1,725 @@
+// ========================================== Display ==========================================
+.dBlock {
+  display: block !important;
+}
+
+.dFlex {
+  display: flex !important;
+}
+
+.dNone {
+  display: none !important;
+}
+
+// ========================================== Colors ==========================================
+.gray {
+  color: gray !important;
+}
+
+.gray200 {
+  color: $gray200 !important;
+}
+
+.gray300 {
+  color: $gray300 !important;
+}
+
+.white {
+  color: $white !important;
+}
+
+.black {
+  color: $black !important;
+}
+
+.blue {
+  color: $blue !important;
+}
+
+.blue200 {
+  color: $blue200 !important;
+}
+
+.blue300 {
+  color: $blue300 !important;
+}
+
+.lightGray {
+  color: $lightGray !important;
+}
+
+.mediumGray {
+  columns: $mediumGray !important;
+}
+
+.greenDark {
+  color: $greenDark !important;
+}
+
+.greenLight {
+  color: $greenLight !important;
+}
+
+.red {
+  color: $red !important;
+}
+
+.cyan {
+  color: $cyan !important;
+}
+
+//===========================================Background-color====================================
+.bg-red {
+  background-color: $red !important;
+}
+
+.orange {
+  color: $orange !important;
+}
+
+.deepblue {
+  color: $deepblue !important;
+}
+
+.mediumBlue {
+  color: $mediumBlue !important;
+}
+
+.gray700 {
+  color: $gray700;
+}
+
+// ========================================== FontSize ==========================================
+.fontS {
+  font-size: $fontS !important;
+}
+
+.fontM {
+  font-size: $fontM !important;
+}
+
+.fontMP {
+  font-size: $fontMP !important;
+}
+
+.fontL {
+  font-size: $fontL !important;
+}
+
+.fontXL {
+  font-size: $fontXL !important;
+}
+
+.fontXXL {
+  font-size: $fontXXL !important;
+}
+
+// ========================================== Font weight ==========================================
+.light {
+  font-weight: 300;
+}
+
+.semiBold {
+  font-weight: $semiBold !important;
+}
+
+.bold {
+  font-weight: $bold !important;
+}
+
+// ========================================== Width height ==========================================
+.w100 {
+  width: 100% !important;
+}
+
+.h100 {
+  height: 100% !important;
+}
+
+.w75 {
+  width: 75%;
+}
+
+// ========================================== Alignments ==========================================
+.textCenter {
+  text-align: center !important;
+}
+
+.textLeft {
+  text-align: left !important;
+}
+
+.textRight {
+  text-align: right !important;
+}
+
+.justifyCenter {
+  justify-content: center !important;
+}
+
+.justifyEnd {
+  justify-content: flex-end !important;
+}
+
+.justifyStart {
+  justify-content: flex-start !important;
+}
+
+.justifyBetween {
+  justify-content: space-between !important;
+}
+
+.justifyAround {
+  justify-content: space-around !important;
+}
+
+.itemsCenter {
+  align-items: center !important;
+}
+
+.verticalCenter {
+  @extend %verticalCenter;
+}
+
+.textEllipsis {
+  @extend %textEllipsis;
+}
+
+.directionColumn {
+  flex-direction: column;
+}
+
+// ========================================== Hover ==========================================
+
+.pointer {
+  cursor: pointer;
+}
+// ========================================== Text Tranform ==========================================
+
+.upperCase {
+  text-transform: uppercase;
+}
+
+.lowerCase {
+  text-transform: lowercase;
+}
+
+// ========================================== Padding top ==========================================
+
+.pt8 {
+  padding-top: $sp8 !important;
+}
+
+.pt12 {
+  padding-top: $sp12 !important;
+}
+
+.pt16 {
+  padding-top: $sp16 !important;
+}
+
+.pt20 {
+  padding-top: $sp20 !important;
+}
+
+.pt24 {
+  padding-top: $sp24 !important;
+}
+
+.pt32 {
+  padding-top: $sp32 !important;
+}
+
+.pt36 {
+  padding-top: $sp36 !important;
+}
+
+.pt40 {
+  padding-top: $sp40 !important;
+}
+
+.pt44 {
+  padding-top: $sp44 !important;
+}
+
+.pt48 {
+  padding-top: $sp48 !important;
+}
+
+.pt52 {
+  padding-top: $sp52 !important;
+}
+
+.pt56 {
+  padding-top: $sp56 !important;
+}
+
+.pt60 {
+  padding-top: $sp60 !important;
+}
+
+.pt80 {
+  padding-top: $sp80 !important;
+}
+
+.pt112 {
+  padding-top: $sp112 !important;
+}
+
+// ========================================== Padding left ==========================================
+
+.pl8 {
+  padding-left: $sp8 !important;
+}
+
+.pl12 {
+  padding-left: $sp12 !important;
+}
+
+.pl16 {
+  padding-left: $sp16 !important;
+}
+
+.pl20 {
+  padding-left: $sp20 !important;
+}
+
+.pl24 {
+  padding-left: $sp24 !important;
+}
+
+.pl28 {
+  padding-left: $sp28 !important;
+}
+
+.pl36 {
+  padding-left: $sp36 !important;
+}
+
+.pl40 {
+  padding-left: $sp40 !important;
+}
+
+.pl44 {
+  padding-left: $sp44 !important;
+}
+
+.pl48 {
+  padding-left: $sp48 !important;
+}
+
+.pl52 {
+  padding-left: $sp52 !important;
+}
+
+.pl56 {
+  padding-left: $sp56 !important;
+}
+
+.pl60 {
+  padding-left: $sp60 !important;
+}
+
+.pl80 {
+  padding-left: $sp80 !important;
+}
+
+.pl112 {
+  padding-left: $sp112 !important;
+}
+
+// ========================================== Padding right ==========================================
+
+.pr8 {
+  padding-right: $sp8 !important;
+}
+
+.pr12 {
+  padding-right: $sp12 !important;
+}
+
+.pr16 {
+  padding-right: $sp16 !important;
+}
+
+.pr20 {
+  padding-right: $sp20 !important;
+}
+
+.pr24 {
+  padding-right: $sp24 !important;
+}
+
+.pr28 {
+  padding-right: $sp28 !important;
+}
+
+.pr32 {
+  padding-right: $sp32 !important;
+}
+
+.pr36 {
+  padding-right: $sp36 !important;
+}
+
+.pr40 {
+  padding-right: $sp40 !important;
+}
+
+.pr44 {
+  padding-right: $sp44 !important;
+}
+
+.pr48 {
+  padding-right: $sp48 !important;
+}
+
+.pr60 {
+  padding-right: $sp60 !important;
+}
+
+.pr80 {
+  padding-right: $sp80 !important;
+}
+
+.pr112 {
+  padding-right: $sp112 !important;
+}
+
+// ========================================== Padding bottom ==========================================
+.pb8 {
+  padding-bottom: $sp8 !important;
+}
+
+.pb12 {
+  padding-bottom: $sp12 !important;
+}
+
+.pb16 {
+  padding-bottom: $sp16 !important;
+}
+
+.pb20 {
+  padding-bottom: $sp20 !important;
+}
+
+.pb24 {
+  padding-bottom: $sp24 !important;
+}
+
+.pb28 {
+  padding-bottom: $sp28 !important;
+}
+
+.pb32 {
+  padding-bottom: $sp32 !important;
+}
+
+.pb36 {
+  padding-bottom: $sp36 !important;
+}
+
+.pb40 {
+  padding-bottom: $sp40 !important;
+}
+
+.pb44 {
+  padding-bottom: $sp44 !important;
+}
+
+.pb48 {
+  padding-bottom: $sp48 !important;
+}
+
+.pb52 {
+  padding-bottom: $sp52 !important;
+}
+
+.pb56 {
+  padding-bottom: $sp56 !important;
+}
+
+.pb60 {
+  padding-bottom: $sp60 !important;
+}
+
+.pb80 {
+  padding-bottom: $sp80 !important;
+}
+
+.pb112 {
+  padding-bottom: $sp112 !important;
+}
+
+// ========================================== Padding top ==========================================
+.mt12 {
+  margin-top: $sp12 !important;
+}
+
+.mt16 {
+  margin-top: $sp16 !important;
+}
+
+.mt20 {
+  margin-top: $sp20 !important;
+}
+
+.mt24 {
+  margin-top: $sp24 !important;
+}
+
+.mt28 {
+  margin-top: $sp28 !important;
+}
+
+.mt32 {
+  margin-top: $sp32 !important;
+}
+
+.mt36 {
+  margin-top: $sp36 !important;
+}
+
+.mt40 {
+  margin-top: $sp40 !important;
+}
+
+.mt44 {
+  margin-top: $sp44 !important;
+}
+
+.mt48 {
+  margin-top: $sp48 !important;
+}
+
+.mt52 {
+  margin-top: $sp52 !important;
+}
+
+.mt56 {
+  margin-top: $sp56 !important;
+}
+
+.mt60 {
+  margin-top: $sp60 !important;
+}
+
+.mt80 {
+  margin-top: $sp80 !important;
+}
+
+.mt112 {
+  margin-top: $sp112 !important;
+}
+
+// ========================================== Padding left ==========================================
+.ml12 {
+  margin-left: $sp12 !important;
+}
+
+.ml16 {
+  margin-left: $sp16 !important;
+}
+
+.ml20 {
+  margin-left: $sp20 !important;
+}
+
+.ml24 {
+  margin-left: $sp24 !important;
+}
+
+.ml28 {
+  margin-left: $sp28 !important;
+}
+
+.ml32 {
+  margin-left: $sp32 !important;
+}
+
+.ml36 {
+  margin-left: $sp36 !important;
+}
+
+.ml40 {
+  margin-left: $sp40 !important;
+}
+
+.ml44 {
+  margin-left: $sp44 !important;
+}
+
+.ml48 {
+  margin-left: $sp48 !important;
+}
+
+.ml52 {
+  margin-left: $sp52 !important;
+}
+
+.ml56 {
+  margin-left: $sp56 !important;
+}
+
+.ml60 {
+  margin-left: $sp60 !important;
+}
+
+.ml80 {
+  margin-left: $sp80 !important;
+}
+
+.ml112 {
+  margin-left: $sp112 !important;
+}
+
+// ========================================== Padding right ==========================================
+.mr12 {
+  margin-right: $sp12 !important;
+}
+
+.mr16 {
+  margin-right: $sp16 !important;
+}
+
+.mr20 {
+  margin-right: $sp20 !important;
+}
+
+.mr24 {
+  margin-right: $sp24 !important;
+}
+
+.mr28 {
+  margin-right: $sp28 !important;
+}
+
+.mr32 {
+  margin-right: $sp32 !important;
+}
+
+.mr36 {
+  margin-right: $sp36 !important;
+}
+
+.mr40 {
+  margin-right: $sp40 !important;
+}
+
+.mr44 {
+  margin-right: $sp44 !important;
+}
+
+.mr48 {
+  margin-right: $sp48 !important;
+}
+
+.mr52 {
+  margin-right: $sp52 !important;
+}
+
+.mr56 {
+  margin-right: $sp56 !important;
+}
+
+.mr60 {
+  margin-right: $sp60 !important;
+}
+
+.mr80 {
+  margin-right: $sp80 !important;
+}
+
+.mr112 {
+  margin-right: $sp112 !important;
+}
+
+// ========================================== Padding bottom ==========================================
+.mb12 {
+  margin-bottom: $sp12 !important;
+}
+
+.mb16 {
+  margin-bottom: $sp16 !important;
+}
+
+.mb20 {
+  margin-bottom: $sp20 !important;
+}
+
+.mb24 {
+  margin-bottom: $sp24 !important;
+}
+
+.mb28 {
+  margin-bottom: $sp28 !important;
+}
+
+.mb32 {
+  margin-bottom: $sp32 !important;
+}
+
+.mb36 {
+  margin-bottom: $sp36 !important;
+}
+
+.mb40 {
+  margin-bottom: $sp40 !important;
+}
+
+.mb44 {
+  margin-bottom: $sp44 !important;
+}
+
+.mb48 {
+  margin-bottom: $sp48 !important;
+}
+
+.mb52 {
+  margin-bottom: $sp52 !important;
+}
+
+.mb56 {
+  margin-bottom: $sp56 !important;
+}
+
+.mb60 {
+  margin-bottom: $sp60 !important;
+}
+
+.mb80 {
+  margin-bottom: $sp80 !important;
+}
+
+.mb112 {
+  margin-bottom: $sp112 !important;
+}
+
+//==========================================Padding left - right================================
+.px60 {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
+//==========================================Padding left - right================================
+.px60 {
+  padding-left: $sp60;
+  padding-right: $sp60;
+}
+
+//========================================== Padding top-bottom =======================================
+
+.py4 {
+  padding-top: $sp4;
+  padding-bottom: $sp4;
+}
+
+.py8 {
+  padding-top: $sp8 !important;
+  padding-bottom: $sp8 !important;
+}
+
+.py12 {
+  padding-top: $sp12 !important;
+  padding-bottom: $sp12 !important;
+}

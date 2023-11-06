@@ -1,0 +1,61 @@
+.listing-container {
+  .listing-header {
+    .list-map-change {
+      .list-btn {
+        color: $white;
+        background-color: $brightGreen;
+      }
+
+      .map-btn {
+        color: $black;
+        background-color: $white;
+      }
+    }
+  }
+
+  .contact-now-line {
+    background-color: $gray400;
+    text-align: center;
+    padding: $sp60;
+
+    .title {
+      color: $mediumGray;
+      font-size: $sp20;
+      font-weight: 600;
+    }
+
+    .contact-now-btn {
+      font-weight: 600;
+      color: $white;
+      background-color: $brightGreen;
+      padding: $sp8 $sp16;
+      text-transform: uppercase;
+      width: fit-content;
+      margin: $sp20 auto;
+      transition: $mediumTransition;
+
+      &:hover {
+        cursor: pointer;
+        color: $white;
+        background-color: #118a72;
+        transition: $mediumTransition;
+      }
+
+      @media screen and (max-width: 992px) {
+        margin-top: $sp8;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      display: block;
+    }
+  }
+
+ 
+}
+.similar-properties {
+  .title {
+    font-size: $sp20;
+    font-weight: 700;
+  }
+}

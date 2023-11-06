@@ -1,0 +1,134 @@
+<p-toast></p-toast>
+
+<div class="card">
+  <p-table able #dt dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [value]="listAttachments" scrollDirection="both" 
+    [rows]="20" [paginator]="true" [rowHover]="true" [showCurrentPageReport]="true" class="table">
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h5 class="p-m-0">Attachments</h5>
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <ng-container *ngFor="let col of cols">
+          <th [style.width]="col.width">
+            {{ col.header }}
+          </th>
+        </ng-container>
+        <th style="width:100px;"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td style="width:120px;">
+          {{getAttachmentTypeName(item.attachmentType)}}
+        </td>
+        <td>
+          {{item.fileName}}
+        </td>
+        <td>
+          {{item.fileSizeInKb}}
+        </td>
+        <td>
+          <a [href]="item.fileUrl">Link</a>
+        </td>
+        <td>
+          {{item.caption1}}
+        </td>
+        <td>
+          {{item.caption2}}
+        </td>
+        <td>
+          {{item.note}}
+        </td>
+        <td>
+          {{item.ordinal}}
+        </td>
+        <td>{{ item.created | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning p-mr-2"
+            (click)="delete(item)">
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="dialog" [style]="{ width: '800px' }" [header]="editMode ? 'Edit Attachment' : 'Add Attachment'"
+  [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <!-- <div class="p-field">
+      <label for="name">Tên danh mục</label>
+      <input type="text" pInputText id="categoryName" [(ngModel)]="form.categoryName" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !form.categoryName">Vui lòng nhập tên</small>
+    </div> -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="control-label">Attachment type<sup>*</sup></label>
+        <select formControlName="attachmentType" id="attachmentType" (change)="onAttachmentTypeChange($event.target.value)" class="form-control">
+          <option *ngFor="let item of attachmentTypeList" [value]="item.value">{{ item['name'] }}</option>
+        </select>
+        <span *ngIf="(attachmentType.touched || submitted) && attachmentType.errors?.required" id="attachmentType" class="error invalid-feedback"
+          style="display: block">Please choose attachment type</span>
+      </div>
+      <div class="form-group" *ngIf="attachmentType.value != 0">
+        <label class="control-label">Select Attachment<sup>*</sup></label>
+        <div style="width: 200px;">
+          <button pButton pRipple label="Choose" icon="pi pi-plus" (click)="chooseFile($event)"></button>
+          <input id="file" type="file" [accept]="fileAccept" class="form-control" (change)="onFileChange($event)" style="display: none;" />
+          
+          <span *ngIf="(fileUrl.touched || submitted) && fileUrl.errors?.required" id="fileUrl"
+            class="error invalid-feedback" style="display: block">Please choose attachment
+          </span>
+        </div>
+        <ng-container *ngIf="fileData != undefined">
+          <div class="row file-panel" >
+            <div class="col-5">{{fileData.fileName}}</div>
+            <div class="col-5">{{fileData.size}} kB</div>
+            <div class="col-2">
+              <button pButton type="button" class="p-button-rounded p-button-danger" icon="pi pi-times" iconPos="left" (click)="removeFile('1')"></button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      
+      <!--
+      <div class="col-md-3">
+        <div>
+          <ng-container *ngIf="videoUrl != ''">
+            <video [src]="videoUrl" controls></video>
+          </ng-container>
+          
+        </div>
+      </div>-->
+      <div class="form-group">
+        <label class="control-label">Caption 1</label>
+        <input formControlName="caption1" id="caption1" type="text" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Caption 2</label>
+        <input formControlName="caption2" id="caption2" type="text" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label class="control-label">Descriptions</label>
+        <textarea formControlName="note" id="note" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Position</label>
+        <input formControlName="ordinal" id="ordinal" type="text" class="form-control" positiveNumberDirective />
+      </div>
+      
+      <div class="form-group">
+        <!-- <button (click)="onBack()" class="btn btn-secondary mr-2">Quay lại danh sách</button> -->
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid" *ngIf="isUpload == false">Confirm</button>
+        <p-progressBar [value]="uploadValue" *ngIf="isUpload"></p-progressBar>
+      </div>
+    </form>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

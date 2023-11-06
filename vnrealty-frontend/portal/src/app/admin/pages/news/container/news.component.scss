@@ -1,0 +1,27 @@
+.image-item {
+    position: relative;
+
+    .close-btn {
+        color: white;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        align-items: center;
+        margin: auto;
+        transition: .4s;
+
+        p {
+            margin: -2px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            opacity: .7;
+            transition: .4s;
+        }
+    }
+    
+}
